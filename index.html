@@ -639,58 +639,37 @@
         .card:nth-child(22) { animation-delay: 1.1s; }
         .card:nth-child(23) { animation-delay: 1.15s; }
     </style>
-</head>
 <body lang="zh">
-    <!-- Language Toggle -->
     <div class="lang-toggle">
         <button class="lang-btn active" data-lang="zh">中文</button>
         <button class="lang-btn" data-lang="en">EN</button>
     </div>
-
     <div class="page-wrapper">
-        <!-- Header -->
         <header>
             <h1 class="page-title" data-i18n="title"></h1>
             <p class="page-subtitle" data-i18n="subtitle"></p>
             <div class="page-meta">
-                <div class="meta-item">
-                    <span class="meta-number">23</span>
-                    <span data-i18n="meta-concepts"></span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-number">5</span>
-                    <span data-i18n="meta-categories"></span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-number">1</span>
-                    <span data-i18n="meta-day"></span>
-                </div>
+                <div class="meta-item"><span class="meta-number">23</span><span data-i18n="meta-concepts"></span></div>
+                <div class="meta-item"><span class="meta-number">5</span><span data-i18n="meta-categories"></span></div>
+                <div class="meta-item"><span class="meta-number">1</span><span data-i18n="meta-day"></span></div>
             </div>
         </header>
-
-        <!-- Filter Section -->
         <div class="filter-section">
             <div class="filter-tabs">
                 <button class="filter-tab active" data-filter="all" data-i18n="filter-all"></button>
                 <button class="filter-tab" data-filter="basics" data-i18n="filter-basics"></button>
-                <button class="filter-tab" data-filter="agents" data-i18n="filter-agents"></button>
+                <button class="filter-tab" data-filter="config" data-i18n="filter-config"></button>
                 <button class="filter-tab" data-filter="dev" data-i18n="filter-dev"></button>
-                <button class="filter-tab" data-filter="deployment" data-i18n="filter-deployment"></button>
                 <button class="filter-tab" data-filter="debugging" data-i18n="filter-debugging"></button>
+                <button class="filter-tab" data-filter="workflow" data-i18n="filter-workflow"></button>
             </div>
         </div>
-
-        <!-- Cards Container -->
         <div class="cards-container" id="cardsContainer"></div>
-
-        <!-- Footer -->
         <footer>
             <p><span data-i18n="footer-inspired"></span>: <a href="https://cookbook.bensbites.com/cookbook/become-technical-in-1-day/" target="_blank">Ben's Bites Cookbook</a></p>
             <p style="margin-top: 12px;" data-i18n="footer-made"></p>
         </footer>
     </div>
-
-    <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal">
             <div class="modal-header">
@@ -712,87 +691,80 @@
         // i18n translations
         const i18n = {
             zh: {
-                title: '一天掌握技术基础',
-                subtitle: 'AI 时代开发者的必备知识清单',
-                'meta-concepts': '个核心概念',
-                'meta-categories': '大主题分类',
-                'meta-day': '天快速入门',
-                'filter-all': '全部概念',
-                'filter-basics': '基础知识',
-                'filter-agents': 'AI 助手',
-                'filter-dev': '开发工具',
-                'filter-deployment': '部署运行',
-                'filter-debugging': '调试优化',
-                'click-to-view': '点击查看详情 →',
-                'footer-inspired': '灵感来源',
-                'footer-made': '用心整理 · 持续更新'
+                title: 'AI 代码助手入门指南',
+                subtitle: '一天掌握 AI 编程基础概念',
+                langSwitch: 'English',
+                filterAll: '全部',
+                filterBasics: '基础概念',
+                filterConfig: '配置与技能',
+                filterDev: '开发基础',
+                filterDebugging: '调试优化',
+                filterWorkflow: '工作流程',
+                close: '关闭'
             },
             en: {
-                title: 'Tech Fundamentals in 1 Day',
-                subtitle: 'Essential Knowledge for AI-Era Developers',
-                'meta-concepts': 'Core Concepts',
-                'meta-categories': 'Major Categories',
-                'meta-day': 'Day Quick Start',
-                'filter-all': 'All Concepts',
-                'filter-basics': 'Fundamentals',
-                'filter-agents': 'AI Agents',
-                'filter-dev': 'Dev Tools',
-                'filter-deployment': 'Deployment',
-                'filter-debugging': 'Debugging',
-                'click-to-view': 'Click to view details →',
-                'footer-inspired': 'Inspired by',
-                'footer-made': 'Crafted with care · Updated regularly'
+                title: 'AI Coding Agent Guide',
+                subtitle: 'Master AI Programming Fundamentals in 1 Day',
+                langSwitch: '中文',
+                filterAll: 'All',
+                filterBasics: 'Basics',
+                filterConfig: 'Config & Skills',
+                filterDev: 'Development',
+                filterDebugging: 'Debugging',
+                filterWorkflow: 'Workflow',
+                close: 'Close'
             }
         };
 
-        // Cards data with bilingual content
+        // Cards data - all 23 concepts
         const cardsData = [
+            // 1. 基础概念 (basics) - 5个
             {
                 id: 1,
                 category: 'basics',
-                icon: '🌐',
-                title: { zh: '互联网基础', en: 'Internet Basics' },
+                icon: '💻',
+                title: { zh: '本地 vs 远程', en: 'Local vs Remote' },
                 description: {
-                    zh: '了解网络如何工作，数据如何在全球传输',
-                    en: 'Understanding how the web works and data travels globally'
+                    zh: '理解代码存储在你的电脑还是云端',
+                    en: 'Understanding where your code lives: on your machine or in the cloud'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是互联网？</h3>
-                            <p>互联网是一个由数十亿台设备组成的全球性网络，通过标准化协议相互通信。当你访问一个网站时，实际上是在向远程服务器发送请求。</p>
+                            <h3>什么是本地（Local）？</h3>
+                            <p><strong>本地就是在你的电脑上</strong>。当你在本地编辑代码时，文件就存储在你的硬盘里，只有你能访问。</p>
                         </div>
                         <div class="content-section">
-                            <h3>核心概念</h3>
+                            <h3>什么是远程（Remote）？</h3>
+                            <p><strong>远程指的是云端</strong>。代码存储在 GitHub、GitLab 等平台的服务器上，任何有权限的人都可以通过网络访问。</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>为什么要区分？</h3>
                             <ul>
-                                <li><strong>IP 地址</strong>：设备在网络中的唯一标识符</li>
-                                <li><strong>DNS</strong>：将域名（如 google.com）转换为 IP 地址</li>
-                                <li><strong>HTTP/HTTPS</strong>：浏览器和服务器之间的通信协议</li>
-                                <li><strong>数据包</strong>：数据被分割成小块在网络中传输</li>
+                                <li><strong>本地修改</strong>：你在电脑上改代码，不会影响其他人</li>
+                                <li><strong>推送（Push）</strong>：将本地改动上传到远程</li>
+                                <li><strong>拉取（Pull）</strong>：从远程下载最新代码到本地</li>
                             </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>实际应用</h3>
-                            <p>理解互联网基础能帮助你调试网络问题、优化加载速度、理解安全性问题。例如，知道 CDN 将内容缓存到离用户更近的服务器，可以大幅提升网站性能。</p>
+                            <p>AI 代码助手通常在<strong>本地</strong>运行，直接操作你电脑上的文件。</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is the Internet?</h3>
-                            <p>The Internet is a global network of billions of devices communicating through standardized protocols. When you visit a website, you're actually sending requests to remote servers.</p>
+                            <h3>What is Local?</h3>
+                            <p><strong>Local means it's on your computer</strong>. When you edit code locally, files are stored on your hard drive and only you can access them.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Core Concepts</h3>
+                            <h3>What is Remote?</h3>
+                            <p><strong>Remote means it's in the cloud</strong>. Code is stored on servers (GitHub, GitLab, etc.) and can be accessed by anyone with permission via the internet.</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>Why Does This Matter?</h3>
                             <ul>
-                                <li><strong>IP Address</strong>: Unique identifier for devices on a network</li>
-                                <li><strong>DNS</strong>: Converts domain names (like google.com) to IP addresses</li>
-                                <li><strong>HTTP/HTTPS</strong>: Communication protocol between browsers and servers</li>
-                                <li><strong>Packets</strong>: Data is split into small chunks for network transmission</li>
+                                <li><strong>Local changes</strong>: You modify code on your machine without affecting others</li>
+                                <li><strong>Push</strong>: Upload local changes to remote</li>
+                                <li><strong>Pull</strong>: Download latest code from remote to local</li>
                             </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Practical Applications</h3>
-                            <p>Understanding Internet basics helps debug network issues, optimize loading speeds, and understand security concerns. For example, knowing that CDNs cache content closer to users can dramatically improve website performance.</p>
+                            <p>AI coding agents typically run <strong>locally</strong>, directly manipulating files on your computer.</p>
                         </div>
                     `
                 }
@@ -800,59 +772,57 @@
             {
                 id: 2,
                 category: 'basics',
-                icon: '📦',
-                title: { zh: '前端与后端', en: 'Frontend vs Backend' },
+                icon: '⌨️',
+                title: { zh: '终端与命令行', en: 'Terminal & Command Line' },
                 description: {
-                    zh: '理解应用程序的两大核心部分及其职责',
-                    en: 'Understanding the two core parts of applications and their roles'
+                    zh: 'AI 助手执行命令的界面',
+                    en: 'The interface where AI agents execute commands'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>前端（Frontend）</h3>
-                            <p>前端是用户直接看到和交互的部分。使用 HTML、CSS 和 JavaScript 构建。</p>
+                            <h3>什么是终端？</h3>
+                            <p><strong>终端（Terminal）是一个文本界面</strong>，通过输入命令来控制电脑，而不是点击图标。</p>
+                            <p>Mac 自带"终端"应用，Windows 有"命令提示符"或"PowerShell"。</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>为什么 AI 助手要用终端？</h3>
+                            <p>AI 代码助手（如 Claude Code、Cursor）需要运行各种命令来：</p>
                             <ul>
-                                <li><strong>HTML</strong>：定义网页结构和内容</li>
-                                <li><strong>CSS</strong>：控制样式和布局</li>
-                                <li><strong>JavaScript</strong>：添加交互性和动态行为</li>
+                                <li>安装软件包：<code>npm install</code></li>
+                                <li>运行测试：<code>pytest</code></li>
+                                <li>启动服务器：<code>npm run dev</code></li>
+                                <li>操作 Git：<code>git commit -m "fix bug"</code></li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>后端（Backend）</h3>
-                            <p>后端处理业务逻辑、数据存储和服务器端操作。用户看不到，但它是应用的大脑。</p>
-                            <ul>
-                                <li><strong>服务器</strong>：处理请求和响应</li>
-                                <li><strong>数据库</strong>：存储和管理数据</li>
-                                <li><strong>API</strong>：前后端通信的桥梁</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>简单示例</h3>
-                            <p>想象一个餐厅：前端是菜单和餐厅装修（用户看到的），后端是厨房（处理订单的地方）。</p>
+                            <h3>常见命令</h3>
+                            <pre><code>cd my-project    # 进入文件夹
+ls               # 列出文件
+pwd              # 显示当前路径</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Frontend</h3>
-                            <p>The frontend is what users see and interact with directly. Built using HTML, CSS, and JavaScript.</p>
+                            <h3>What is a Terminal?</h3>
+                            <p><strong>A terminal is a text-based interface</strong> for controlling your computer by typing commands instead of clicking icons.</p>
+                            <p>Mac has "Terminal", Windows has "Command Prompt" or "PowerShell".</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>Why Do AI Agents Use the Terminal?</h3>
+                            <p>AI coding agents (like Claude Code, Cursor) need to run various commands to:</p>
                             <ul>
-                                <li><strong>HTML</strong>: Defines webpage structure and content</li>
-                                <li><strong>CSS</strong>: Controls styling and layout</li>
-                                <li><strong>JavaScript</strong>: Adds interactivity and dynamic behavior</li>
+                                <li>Install packages: <code>npm install</code></li>
+                                <li>Run tests: <code>pytest</code></li>
+                                <li>Start servers: <code>npm run dev</code></li>
+                                <li>Use Git: <code>git commit -m "fix bug"</code></li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Backend</h3>
-                            <p>The backend handles business logic, data storage, and server-side operations. Users don't see it, but it's the brain of the application.</p>
-                            <ul>
-                                <li><strong>Server</strong>: Processes requests and responses</li>
-                                <li><strong>Database</strong>: Stores and manages data</li>
-                                <li><strong>API</strong>: Bridge between frontend and backend</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Simple Example</h3>
-                            <p>Think of a restaurant: the frontend is the menu and decor (what users see), the backend is the kitchen (where orders are processed).</p>
+                            <h3>Common Commands</h3>
+                            <pre><code>cd my-project    # Change directory
+ls               # List files
+pwd              # Print working directory</code></pre>
                         </div>
                     `
                 }
@@ -860,65 +830,55 @@
             {
                 id: 3,
                 category: 'basics',
-                icon: '🗄️',
-                title: { zh: '数据库基础', en: 'Database Fundamentals' },
+                icon: '📁',
+                title: { zh: '目录与路径', en: 'Directories & Paths' },
                 description: {
-                    zh: '应用程序如何持久化存储和查询数据',
-                    en: 'How applications persistently store and query data'
+                    zh: '文件系统导航基础',
+                    en: 'Navigating the file system'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是数据库？</h3>
-                            <p>数据库是有组织地存储和管理数据的系统。就像一个智能的电子表格，但功能强大得多。</p>
+                            <h3>目录就是文件夹</h3>
+                            <p><strong>目录（Directory）</strong>是文件夹的技术术语。路径（Path）是文件或文件夹在系统中的地址。</p>
                         </div>
                         <div class="content-section">
-                            <h3>主要类型</h3>
+                            <h3>路径类型</h3>
+                            <p><strong>绝对路径</strong>：从根目录开始的完整路径</p>
+                            <pre><code>/Users/jingyu/projects/myapp/index.js</code></pre>
+                            <p><strong>相对路径</strong>：相对于当前位置的路径</p>
+                            <pre><code>./src/components/Button.js
+../utils/helper.js</code></pre>
+                        </div>
+                        <div class="content-section">
+                            <h3>特殊符号</h3>
                             <ul>
-                                <li><strong>关系型数据库（SQL）</strong>：如 PostgreSQL、MySQL。数据存储在表格中，适合结构化数据</li>
-                                <li><strong>非关系型数据库（NoSQL）</strong>：如 MongoDB、Redis。更灵活，适合非结构化数据</li>
+                                <li><code>~</code> 用户主目录（如 /Users/jingyu）</li>
+                                <li><code>.</code> 当前目录</li>
+                                <li><code>..</code> 上级目录</li>
                             </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>基本操作（CRUD）</h3>
-                            <pre><code class="language-sql">-- Create (创建)
-INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
-
--- Read (读取)
-SELECT * FROM users WHERE name = 'Alice';
-
--- Update (更新)
-UPDATE users SET email = 'newemail@example.com' WHERE name = 'Alice';
-
--- Delete (删除)
-DELETE FROM users WHERE name = 'Alice';</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is a Database?</h3>
-                            <p>A database is a system for organizing and managing data. Like a smart spreadsheet, but far more powerful.</p>
+                            <h3>Directories Are Folders</h3>
+                            <p><strong>Directory</strong> is the technical term for folder. A path is the address of a file or folder in the system.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Main Types</h3>
+                            <h3>Path Types</h3>
+                            <p><strong>Absolute path</strong>: Full path from root directory</p>
+                            <pre><code>/Users/jingyu/projects/myapp/index.js</code></pre>
+                            <p><strong>Relative path</strong>: Path relative to current location</p>
+                            <pre><code>./src/components/Button.js
+../utils/helper.js</code></pre>
+                        </div>
+                        <div class="content-section">
+                            <h3>Special Symbols</h3>
                             <ul>
-                                <li><strong>Relational (SQL)</strong>: Like PostgreSQL, MySQL. Data stored in tables, great for structured data</li>
-                                <li><strong>Non-relational (NoSQL)</strong>: Like MongoDB, Redis. More flexible, great for unstructured data</li>
+                                <li><code>~</code> Home directory (e.g. /Users/jingyu)</li>
+                                <li><code>.</code> Current directory</li>
+                                <li><code>..</code> Parent directory</li>
                             </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Basic Operations (CRUD)</h3>
-                            <pre><code class="language-sql">-- Create
-INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
-
--- Read
-SELECT * FROM users WHERE name = 'Alice';
-
--- Update
-UPDATE users SET email = 'newemail@example.com' WHERE name = 'Alice';
-
--- Delete
-DELETE FROM users WHERE name = 'Alice';</code></pre>
                         </div>
                     `
                 }
@@ -926,69 +886,51 @@ DELETE FROM users WHERE name = 'Alice';</code></pre>
             {
                 id: 4,
                 category: 'basics',
-                icon: '🔌',
-                title: { zh: 'API 接口', en: 'APIs' },
+                icon: '🤖',
+                title: { zh: '什么是代码代理', en: 'What Are Coding Agents' },
                 description: {
-                    zh: '不同软件系统之间如何相互通信',
-                    en: 'How different software systems communicate with each other'
+                    zh: 'AI 助手的核心定义',
+                    en: 'Core definition of AI coding assistants'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 API？</h3>
-                            <p>API（应用程序编程接口）是软件之间的通信协议。就像餐厅服务员：你（前端）告诉服务员（API）你想要什么，服务员去厨房（后端）拿给你。</p>
+                            <h3>代码代理的定义</h3>
+                            <p><strong>代码代理（Coding Agent）</strong>是能够自主执行编程任务的 AI 助手，比如 Claude Code、Cursor、GitHub Copilot。</p>
                         </div>
                         <div class="content-section">
-                            <h3>RESTful API 示例</h3>
-                            <pre><code class="language-javascript">// GET 请求 - 获取数据
-fetch('https://api.example.com/users/123')
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-// POST 请求 - 创建数据
-fetch('https://api.example.com/users', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ name: 'Alice', email: 'alice@example.com' })
-});</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>常见 HTTP 方法</h3>
+                            <h3>代理能做什么？</h3>
                             <ul>
-                                <li><strong>GET</strong>：获取数据</li>
-                                <li><strong>POST</strong>：创建新数据</li>
-                                <li><strong>PUT/PATCH</strong>：更新数据</li>
-                                <li><strong>DELETE</strong>：删除数据</li>
+                                <li><strong>读写文件</strong>：修改代码、创建新文件</li>
+                                <li><strong>运行命令</strong>：安装依赖、运行测试</li>
+                                <li><strong>使用工具</strong>：调用 Git、npm、bash 等</li>
+                                <li><strong>理解上下文</strong>：分析整个项目结构</li>
                             </ul>
+                        </div>
+                        <div class="content-section">
+                            <h3>与传统 AI 的区别</h3>
+                            <p>普通 ChatGPT 只能<strong>生成文本</strong>，代码代理能<strong>直接操作你的代码</strong>。</p>
+                            <p>你告诉它"修复这个 bug"，它会自己找文件、改代码、测试验证。</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is an API?</h3>
-                            <p>API (Application Programming Interface) is a communication protocol between software. Like a restaurant waiter: you (frontend) tell the waiter (API) what you want, and they go to the kitchen (backend) to get it.</p>
+                            <h3>What Is a Coding Agent?</h3>
+                            <p><strong>A coding agent</strong> is an AI assistant that can autonomously perform programming tasks, like Claude Code, Cursor, or GitHub Copilot.</p>
                         </div>
                         <div class="content-section">
-                            <h3>RESTful API Example</h3>
-                            <pre><code class="language-javascript">// GET request - fetch data
-fetch('https://api.example.com/users/123')
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-// POST request - create data
-fetch('https://api.example.com/users', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ name: 'Alice', email: 'alice@example.com' })
-});</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Common HTTP Methods</h3>
+                            <h3>What Can Agents Do?</h3>
                             <ul>
-                                <li><strong>GET</strong>: Retrieve data</li>
-                                <li><strong>POST</strong>: Create new data</li>
-                                <li><strong>PUT/PATCH</strong>: Update data</li>
-                                <li><strong>DELETE</strong>: Delete data</li>
+                                <li><strong>Read/write files</strong>: Modify code, create new files</li>
+                                <li><strong>Run commands</strong>: Install dependencies, run tests</li>
+                                <li><strong>Use tools</strong>: Call Git, npm, bash, etc.</li>
+                                <li><strong>Understand context</strong>: Analyze entire project structure</li>
                             </ul>
+                        </div>
+                        <div class="content-section">
+                            <h3>Difference from Traditional AI</h3>
+                            <p>Regular ChatGPT only <strong>generates text</strong>, coding agents can <strong>directly manipulate your code</strong>.</p>
+                            <p>You tell it "fix this bug" and it will find files, modify code, and verify with tests.</p>
                         </div>
                     `
                 }
@@ -996,509 +938,399 @@ fetch('https://api.example.com/users', {
             {
                 id: 5,
                 category: 'basics',
-                icon: '☁️',
-                title: { zh: '云计算', en: 'Cloud Computing' },
+                icon: '📝',
+                title: { zh: '系统提示', en: 'System Prompts' },
                 description: {
-                    zh: '使用互联网上的远程服务器来存储和处理数据',
-                    en: 'Using remote servers on the internet to store and process data'
+                    zh: '定义代理行为的核心指令',
+                    en: 'Core instructions defining agent behavior'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是云计算？</h3>
-                            <p>云计算让你可以租用别人的计算机资源，而不是自己购买和维护服务器。就像租房而不是买房。</p>
+                            <h3>什么是系统提示？</h3>
+                            <p><strong>系统提示（System Prompt）</strong>是 AI 代理的"操作手册"，定义了它的角色、能力和行为规则。</p>
                         </div>
                         <div class="content-section">
-                            <h3>主要云服务商</h3>
+                            <h3>为什么重要？</h3>
+                            <p>系统提示告诉代理：</p>
                             <ul>
-                                <li><strong>AWS（亚马逊）</strong>：市场份额最大，服务最全</li>
-                                <li><strong>Google Cloud</strong>：AI 和数据分析强</li>
-                                <li><strong>Azure（微软）</strong>：企业级应用友好</li>
-                                <li><strong>阿里云、腾讯云</strong>：国内主流选择</li>
+                                <li>你是什么角色（前端专家、Python 工程师）</li>
+                                <li>你能使用哪些工具（终端、文件系统、Git）</li>
+                                <li>你应该遵循哪些规则（代码风格、安全检查）</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>服务类型</h3>
-                            <ul>
-                                <li><strong>IaaS</strong>：基础设施即服务（如虚拟机）</li>
-                                <li><strong>PaaS</strong>：平台即服务（如应用托管）</li>
-                                <li><strong>SaaS</strong>：软件即服务（如 Gmail）</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>优势</h3>
-                            <p>按需付费、弹性伸缩、全球部署、无需维护硬件。适合初创公司和快速增长的业务。</p>
+                            <h3>示例</h3>
+                            <pre><code>你是一个 React 专家。
+在修改代码前，先运行测试。
+遵循项目的 ESLint 规则。
+提交前确保所有测试通过。</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is Cloud Computing?</h3>
-                            <p>Cloud computing lets you rent computing resources instead of buying and maintaining your own servers. Like renting an apartment instead of buying a house.</p>
+                            <h3>What Is a System Prompt?</h3>
+                            <p><strong>A system prompt</strong> is the AI agent's "operating manual" that defines its role, capabilities, and behavior rules.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Major Cloud Providers</h3>
+                            <h3>Why Does It Matter?</h3>
+                            <p>System prompts tell the agent:</p>
                             <ul>
-                                <li><strong>AWS (Amazon)</strong>: Largest market share, most comprehensive</li>
-                                <li><strong>Google Cloud</strong>: Strong in AI and data analytics</li>
-                                <li><strong>Azure (Microsoft)</strong>: Enterprise-friendly</li>
-                                <li><strong>Alibaba Cloud, Tencent Cloud</strong>: Popular in China</li>
+                                <li>What role you play (frontend expert, Python engineer)</li>
+                                <li>Which tools you can use (terminal, file system, Git)</li>
+                                <li>What rules to follow (code style, security checks)</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Service Types</h3>
-                            <ul>
-                                <li><strong>IaaS</strong>: Infrastructure as a Service (like virtual machines)</li>
-                                <li><strong>PaaS</strong>: Platform as a Service (like app hosting)</li>
-                                <li><strong>SaaS</strong>: Software as a Service (like Gmail)</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Benefits</h3>
-                            <p>Pay-as-you-go, elastic scaling, global deployment, no hardware maintenance. Perfect for startups and fast-growing businesses.</p>
+                            <h3>Example</h3>
+                            <pre><code>You are a React expert.
+Run tests before modifying code.
+Follow the project's ESLint rules.
+Ensure all tests pass before committing.</code></pre>
                         </div>
                     `
                 }
             },
+            // 2. 配置与技能 (config) - 5个
             {
                 id: 6,
-                category: 'agents',
-                icon: '🤖',
-                title: { zh: 'AI 提示词工程', en: 'Prompt Engineering' },
+                category: 'config',
+                icon: '⚙️',
+                title: { zh: 'agents.md 配置文件', en: 'agents.md Config File' },
                 description: {
-                    zh: '如何有效地与 AI 模型沟通以获得最佳结果',
-                    en: 'How to effectively communicate with AI models for best results'
+                    zh: '项目级指令文档',
+                    en: 'Project-level instruction document'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是提示词工程？</h3>
-                            <p>提示词工程是设计和优化输入文本的艺术，以引导 AI 产生期望的输出。好的提示词能让 AI 理解你的意图并给出高质量答案。</p>
+                            <h3>什么是 agents.md？</h3>
+                            <p><strong>agents.md</strong> 是放在项目根目录的配置文件，用来告诉 AI 代理这个项目的特殊规则。</p>
                         </div>
                         <div class="content-section">
-                            <h3>关键技巧</h3>
+                            <h3>为什么需要它？</h3>
+                            <p>每个项目都有自己的约定：</p>
                             <ul>
-                                <li><strong>明确具体</strong>：清楚说明你想要什么，提供上下文</li>
-                                <li><strong>角色设定</strong>："你是一位经验丰富的程序员..."</li>
-                                <li><strong>分步指导</strong>：将复杂任务拆解成步骤</li>
-                                <li><strong>提供示例</strong>：展示期望的输出格式</li>
+                                <li>代码风格（用 tabs 还是 spaces）</li>
+                                <li>文件结构（组件放哪里）</li>
+                                <li>测试要求（提交前必须跑测试）</li>
                             </ul>
+                            <p>把这些写在 agents.md 里，代理每次都会遵守。</p>
                         </div>
                         <div class="content-section">
-                            <h3>示例对比</h3>
-                            <p><strong>差的提示词</strong>：写一个函数</p>
-                            <p><strong>好的提示词</strong>：用 Python 写一个函数，接收一个整数列表作为输入，返回列表中所有偶数的平方和。请包含类型提示和文档字符串。</p>
+                            <h3>示例内容</h3>
+                            <pre><code># 项目规则
+
+- 使用 TypeScript
+- 组件放在 src/components/
+- 提交前运行 npm test
+- 遵循 Airbnb 代码规范</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is Prompt Engineering?</h3>
-                            <p>Prompt engineering is the art of designing and optimizing input text to guide AI toward desired outputs. Good prompts help AI understand your intent and deliver high-quality responses.</p>
+                            <h3>What Is agents.md?</h3>
+                            <p><strong>agents.md</strong> is a config file in your project root that tells AI agents the special rules for this project.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Key Techniques</h3>
+                            <h3>Why Do You Need It?</h3>
+                            <p>Every project has its own conventions:</p>
                             <ul>
-                                <li><strong>Be Specific</strong>: Clearly state what you want with context</li>
-                                <li><strong>Role Assignment</strong>: "You are an experienced programmer..."</li>
-                                <li><strong>Step-by-Step</strong>: Break complex tasks into steps</li>
-                                <li><strong>Provide Examples</strong>: Show expected output format</li>
+                                <li>Code style (tabs vs spaces)</li>
+                                <li>File structure (where to put components)</li>
+                                <li>Testing requirements (run tests before commit)</li>
                             </ul>
+                            <p>Write these in agents.md and the agent will always follow them.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Example Comparison</h3>
-                            <p><strong>Bad Prompt</strong>: Write a function</p>
-                            <p><strong>Good Prompt</strong>: Write a Python function that takes a list of integers as input and returns the sum of squares of all even numbers. Include type hints and a docstring.</p>
+                            <h3>Example Content</h3>
+                            <pre><code># Project Rules
+
+- Use TypeScript
+- Components go in src/components/
+- Run npm test before committing
+- Follow Airbnb style guide</code></pre>
                         </div>
                     `
                 }
             },
             {
                 id: 7,
-                category: 'agents',
-                icon: '🧠',
-                title: { zh: 'LLM 大语言模型', en: 'Large Language Models' },
+                category: 'config',
+                icon: '🎯',
+                title: { zh: '技能 (Skills)', en: 'Skills' },
                 description: {
-                    zh: '理解 ChatGPT、Claude 等 AI 背后的核心技术',
-                    en: 'Understanding the core technology behind ChatGPT, Claude, etc.'
+                    zh: '可重用的工作流模板',
+                    en: 'Reusable workflow templates'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 LLM？</h3>
-                            <p>大语言模型是在海量文本数据上训练的深度学习模型，能够理解和生成类人文本。它们通过学习语言模式来预测下一个词。</p>
+                            <h3>什么是技能？</h3>
+                            <p><strong>技能（Skill）</strong>是预设的工作流程，让代理按特定方式完成任务。</p>
+                            <p>就像给代理提供"菜谱"，它按步骤做菜。</p>
                         </div>
                         <div class="content-section">
-                            <h3>主流模型</h3>
+                            <h3>常见技能示例</h3>
                             <ul>
-                                <li><strong>GPT-4</strong>（OpenAI）：通用能力强</li>
-                                <li><strong>Claude</strong>（Anthropic）：安全性高，长上下文</li>
-                                <li><strong>Gemini</strong>（Google）：多模态能力强</li>
-                                <li><strong>文心一言、通义千问</strong>：中文优化</li>
+                                <li><strong>/commit</strong>：检查改动、生成 commit 信息、提交代码</li>
+                                <li><strong>/test</strong>：运行测试、分析失败原因、修复问题</li>
+                                <li><strong>/deploy</strong>：构建项目、检查配置、部署上线</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>基本使用</h3>
-                            <pre><code class="language-python">import openai
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[
-        {"role": "system", "content": "你是一个有帮助的助手"},
-        {"role": "user", "content": "解释什么是递归"}
-    ]
-)
-
-print(response.choices[0].message.content)</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>局限性</h3>
-                            <p>可能产生幻觉（编造事实）、知识截止日期、无法访问实时信息、可能包含偏见。使用时需要批判性思考。</p>
+                            <h3>技能的位置</h3>
+                            <p>技能存储在 <code>~/.claude/skills/</code> 目录</p>
+                            <p>你可以创建自定义技能来自动化重复任务。</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What are LLMs?</h3>
-                            <p>Large Language Models are deep learning models trained on massive text data that can understand and generate human-like text. They learn language patterns to predict the next word.</p>
+                            <h3>What Are Skills?</h3>
+                            <p><strong>Skills</strong> are predefined workflows that make agents complete tasks in specific ways.</p>
+                            <p>Like giving the agent "recipes" to follow step by step.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Popular Models</h3>
+                            <h3>Common Skill Examples</h3>
                             <ul>
-                                <li><strong>GPT-4</strong> (OpenAI): Strong general capabilities</li>
-                                <li><strong>Claude</strong> (Anthropic): High safety, long context</li>
-                                <li><strong>Gemini</strong> (Google): Strong multimodal capabilities</li>
-                                <li><strong>Wenxin, Tongyi</strong>: Optimized for Chinese</li>
+                                <li><strong>/commit</strong>: Check changes, generate commit message, commit code</li>
+                                <li><strong>/test</strong>: Run tests, analyze failures, fix issues</li>
+                                <li><strong>/deploy</strong>: Build project, check config, deploy to production</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Basic Usage</h3>
-                            <pre><code class="language-python">import openai
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant"},
-        {"role": "user", "content": "Explain what recursion is"}
-    ]
-)
-
-print(response.choices[0].message.content)</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Limitations</h3>
-                            <p>May hallucinate (make up facts), knowledge cutoff dates, no real-time information access, potential biases. Critical thinking required when using.</p>
+                            <h3>Where Skills Live</h3>
+                            <p>Skills are stored in <code>~/.claude/skills/</code></p>
+                            <p>You can create custom skills to automate repetitive tasks.</p>
                         </div>
                     `
                 }
             },
             {
                 id: 8,
-                category: 'agents',
-                icon: '🔧',
-                title: { zh: 'Function Calling', en: 'Function Calling' },
+                category: 'config',
+                icon: '🏷️',
+                title: { zh: '前置元数据', en: 'Front Matter' },
                 description: {
-                    zh: '让 AI 模型调用外部工具和 API',
-                    en: 'Enabling AI models to invoke external tools and APIs'
+                    zh: '技能自动识别机制',
+                    en: 'Automatic skill detection mechanism'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 Function Calling？</h3>
-                            <p>Function Calling 让 LLM 能够调用你定义的函数，从而获取实时数据、执行操作、与外部系统交互。这突破了 LLM 的静态知识限制。</p>
+                            <h3>什么是前置元数据？</h3>
+                            <p><strong>前置元数据（Front Matter）</strong>是技能文件开头的配置信息，用于自动触发。</p>
                         </div>
                         <div class="content-section">
-                            <h3>工作流程</h3>
-                            <ul>
-                                <li>1. 定义可用的函数及其参数</li>
-                                <li>2. LLM 根据用户输入决定调用哪个函数</li>
-                                <li>3. 你的代码执行函数并返回结果</li>
-                                <li>4. LLM 基于结果生成最终回答</li>
-                            </ul>
+                            <h3>工作原理</h3>
+                            <p>当你说"帮我提交代码"，代理会：</p>
+                            <ol>
+                                <li>扫描所有技能的前置元数据</li>
+                                <li>找到匹配关键词的技能</li>
+                                <li>自动加载并执行该技能</li>
+                            </ol>
                         </div>
                         <div class="content-section">
-                            <h3>示例代码</h3>
-                            <pre><code class="language-python">functions = [{
-    "name": "get_weather",
-    "description": "获取指定城市的天气",
-    "parameters": {
-        "type": "object",
-        "properties": {
-            "city": {"type": "string", "description": "城市名称"}
-        },
-        "required": ["city"]
-    }
-}]
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "北京天气怎么样？"}],
-    functions=functions
-)
-
-# LLM 会返回调用 get_weather(city="北京") 的指令</code></pre>
+                            <h3>示例</h3>
+                            <pre><code>---
+name: commit
+description: Create a git commit
+triggers:
+  - commit
+  - 提交代码
+  - git commit
+---</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is Function Calling?</h3>
-                            <p>Function Calling enables LLMs to invoke functions you define, allowing them to fetch real-time data, perform actions, and interact with external systems. This breaks through LLM's static knowledge limitations.</p>
+                            <h3>What Is Front Matter?</h3>
+                            <p><strong>Front matter</strong> is configuration info at the beginning of skill files, used for auto-triggering.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Workflow</h3>
-                            <ul>
-                                <li>1. Define available functions and their parameters</li>
-                                <li>2. LLM decides which function to call based on user input</li>
-                                <li>3. Your code executes the function and returns results</li>
-                                <li>4. LLM generates final response based on results</li>
-                            </ul>
+                            <h3>How It Works</h3>
+                            <p>When you say "help me commit", the agent will:</p>
+                            <ol>
+                                <li>Scan all skills' front matter</li>
+                                <li>Find skills matching keywords</li>
+                                <li>Automatically load and execute that skill</li>
+                            </ol>
                         </div>
                         <div class="content-section">
-                            <h3>Example Code</h3>
-                            <pre><code class="language-python">functions = [{
-    "name": "get_weather",
-    "description": "Get weather for a specific city",
-    "parameters": {
-        "type": "object",
-        "properties": {
-            "city": {"type": "string", "description": "City name"}
-        },
-        "required": ["city"]
-    }
-}]
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "What's the weather in Beijing?"}],
-    functions=functions
-)
-
-# LLM returns instruction to call get_weather(city="Beijing")</code></pre>
+                            <h3>Example</h3>
+                            <pre><code>---
+name: commit
+description: Create a git commit
+triggers:
+  - commit
+  - 提交代码
+  - git commit
+---</code></pre>
                         </div>
                     `
                 }
             },
             {
                 id: 9,
-                category: 'agents',
-                icon: '🎯',
-                title: { zh: 'RAG 检索增强生成', en: 'RAG (Retrieval-Augmented Generation)' },
+                category: 'config',
+                icon: '🔍',
+                title: { zh: '渐进式披露', en: 'Progressive Disclosure' },
                 description: {
-                    zh: '结合外部知识库让 AI 回答更准确',
-                    en: 'Combining external knowledge bases for more accurate AI responses'
+                    zh: '按需加载工具的策略',
+                    en: 'Strategy for loading tools on-demand'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 RAG？</h3>
-                            <p>RAG 是一种技术，让 LLM 在回答问题前先从知识库中检索相关信息。就像考试时可以翻书，而不是只靠记忆。</p>
+                            <h3>什么是渐进式披露？</h3>
+                            <p><strong>渐进式披露（Progressive Disclosure）</strong>是一种设计模式：不一次性展示所有功能，而是在需要时才显示。</p>
                         </div>
                         <div class="content-section">
-                            <h3>工作流程</h3>
+                            <h3>在 AI 代理中的应用</h3>
+                            <p>代理不会一开始就加载所有技能和工具，而是：</p>
                             <ul>
-                                <li>1. 用户提问</li>
-                                <li>2. 在向量数据库中检索相关文档</li>
-                                <li>3. 将检索到的内容和问题一起发给 LLM</li>
-                                <li>4. LLM 基于检索到的上下文生成答案</li>
+                                <li>只加载常用的核心功能</li>
+                                <li>当检测到特定任务时，才加载对应工具</li>
+                                <li>减少上下文消耗，提升响应速度</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>关键技术</h3>
-                            <ul>
-                                <li><strong>向量嵌入</strong>：将文本转换为数字向量</li>
-                                <li><strong>向量数据库</strong>：如 Pinecone、Weaviate、Milvus</li>
-                                <li><strong>语义搜索</strong>：基于含义而非关键词匹配</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>应用场景</h3>
-                            <p>企业文档问答、客户支持、法律/医疗咨询、代码库理解等需要专业知识的场景。</p>
+                            <h3>实际效果</h3>
+                            <p>你说"修改 React 组件" → 代理加载 React 相关技能</p>
+                            <p>你说"部署到 AWS" → 代理加载 AWS 部署工具</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is RAG?</h3>
-                            <p>RAG is a technique that allows LLMs to retrieve relevant information from a knowledge base before answering. Like having an open-book exam instead of relying solely on memory.</p>
+                            <h3>What Is Progressive Disclosure?</h3>
+                            <p><strong>Progressive disclosure</strong> is a design pattern: don't show all features at once, only reveal them when needed.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Workflow</h3>
+                            <h3>Application in AI Agents</h3>
+                            <p>Agents don't load all skills and tools upfront, instead they:</p>
                             <ul>
-                                <li>1. User asks a question</li>
-                                <li>2. Retrieve relevant documents from vector database</li>
-                                <li>3. Send retrieved content + question to LLM</li>
-                                <li>4. LLM generates answer based on retrieved context</li>
+                                <li>Only load commonly used core functionality</li>
+                                <li>Load specific tools when detecting relevant tasks</li>
+                                <li>Reduce context consumption, improve response speed</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Key Technologies</h3>
-                            <ul>
-                                <li><strong>Vector Embeddings</strong>: Convert text to numerical vectors</li>
-                                <li><strong>Vector Databases</strong>: Like Pinecone, Weaviate, Milvus</li>
-                                <li><strong>Semantic Search</strong>: Based on meaning, not keyword matching</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Use Cases</h3>
-                            <p>Enterprise document Q&A, customer support, legal/medical consultation, codebase understanding - scenarios requiring specialized knowledge.</p>
+                            <h3>Real Effect</h3>
+                            <p>You say "modify React component" → agent loads React-related skills</p>
+                            <p>You say "deploy to AWS" → agent loads AWS deployment tools</p>
                         </div>
                     `
                 }
             },
             {
                 id: 10,
-                category: 'agents',
-                icon: '🔗',
-                title: { zh: 'AI Agent 智能体', en: 'AI Agents' },
+                category: 'config',
+                icon: '👁️',
+                title: { zh: '隐藏文件与目录', en: 'Hidden Files & Directories' },
                 description: {
-                    zh: '能够自主规划和执行任务的 AI 系统',
-                    en: 'AI systems that can autonomously plan and execute tasks'
+                    zh: '~/.claude/skills/ 等配置位置',
+                    en: 'Config locations like ~/.claude/skills/'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 AI Agent？</h3>
-                            <p>AI Agent 不只是回答问题，而是能够理解目标、制定计划、使用工具、执行操作，并根据反馈调整策略。</p>
+                            <h3>什么是隐藏文件？</h3>
+                            <p><strong>隐藏文件</strong>是以点（.）开头的文件或目录，默认在文件管理器中不显示。</p>
                         </div>
                         <div class="content-section">
-                            <h3>核心能力</h3>
+                            <h3>常见隐藏目录</h3>
                             <ul>
-                                <li><strong>规划</strong>：将复杂任务分解为子任务</li>
-                                <li><strong>工具使用</strong>：调用 API、搜索、执行代码</li>
-                                <li><strong>记忆</strong>：记住对话历史和中间结果</li>
-                                <li><strong>反思</strong>：评估行动结果并调整策略</li>
+                                <li><code>~/.claude/</code>：Claude Code 配置目录</li>
+                                <li><code>~/.claude/skills/</code>：自定义技能存储</li>
+                                <li><code>~/.claude/MEMORY/</code>：代理记忆存储</li>
+                                <li><code>.git/</code>：Git 版本控制数据</li>
+                                <li><code>.env</code>：环境变量配置</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>流行框架</h3>
-                            <ul>
-                                <li><strong>LangChain</strong>：最流行的 Agent 开发框架</li>
-                                <li><strong>AutoGPT</strong>：自主执行任务的开源项目</li>
-                                <li><strong>AgentGPT</strong>：基于浏览器的 Agent 平台</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>应用示例</h3>
-                            <p>自动化研究助手、代码审查机器人、客户服务代理、个人助理等。</p>
+                            <h3>如何查看？</h3>
+                            <p>Mac/Linux：<code>ls -la</code> 显示所有文件</p>
+                            <p>Mac Finder：按 <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd></p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What are AI Agents?</h3>
-                            <p>AI Agents don't just answer questions - they can understand goals, make plans, use tools, execute actions, and adjust strategies based on feedback.</p>
+                            <h3>What Are Hidden Files?</h3>
+                            <p><strong>Hidden files</strong> are files or directories starting with a dot (.), not shown in file managers by default.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Core Capabilities</h3>
+                            <h3>Common Hidden Directories</h3>
                             <ul>
-                                <li><strong>Planning</strong>: Break complex tasks into subtasks</li>
-                                <li><strong>Tool Use</strong>: Call APIs, search, execute code</li>
-                                <li><strong>Memory</strong>: Remember conversation history and intermediate results</li>
-                                <li><strong>Reflection</strong>: Evaluate action results and adjust strategies</li>
+                                <li><code>~/.claude/</code>: Claude Code config directory</li>
+                                <li><code>~/.claude/skills/</code>: Custom skills storage</li>
+                                <li><code>~/.claude/MEMORY/</code>: Agent memory storage</li>
+                                <li><code>.git/</code>: Git version control data</li>
+                                <li><code>.env</code>: Environment variable config</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Popular Frameworks</h3>
-                            <ul>
-                                <li><strong>LangChain</strong>: Most popular Agent development framework</li>
-                                <li><strong>AutoGPT</strong>: Open-source autonomous task execution</li>
-                                <li><strong>AgentGPT</strong>: Browser-based Agent platform</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Example Applications</h3>
-                            <p>Automated research assistants, code review bots, customer service agents, personal assistants, etc.</p>
+                            <h3>How to View?</h3>
+                            <p>Mac/Linux: <code>ls -la</code> shows all files</p>
+                            <p>Mac Finder: Press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd></p>
                         </div>
                     `
                 }
             },
+            // 3. 开发基础 (dev) - 5个
             {
                 id: 11,
                 category: 'dev',
-                icon: '🐙',
+                icon: '🌳',
                 title: { zh: 'Git 版本控制', en: 'Git Version Control' },
                 description: {
-                    zh: '追踪代码变化，团队协作必备工具',
-                    en: 'Track code changes, essential for team collaboration'
+                    zh: '代码快照与协作',
+                    en: 'Code snapshots and collaboration'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
                             <h3>什么是 Git？</h3>
-                            <p>Git 是一个分布式版本控制系统，记录文件的每一次修改。就像游戏存档，可以随时回到之前的版本。</p>
+                            <p><strong>Git</strong> 是版本控制系统，像代码的"时光机"，可以保存每次修改的快照。</p>
                         </div>
                         <div class="content-section">
-                            <h3>基本命令</h3>
-                            <pre><code class="language-bash"># 初始化仓库
-git init
-
-# 添加文件到暂存区
-git add .
-
-# 提交更改
-git commit -m "描述你的修改"
-
-# 查看状态
-git status
-
-# 查看历史
-git log
-
-# 创建分支
-git branch feature-name
-
-# 切换分支
-git checkout feature-name
-
-# 合并分支
-git merge feature-name</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>GitHub 工作流</h3>
+                            <h3>核心概念</h3>
                             <ul>
-                                <li>Fork 项目到自己账号</li>
-                                <li>Clone 到本地</li>
-                                <li>创建新分支进行开发</li>
-                                <li>Push 到远程仓库</li>
-                                <li>发起 Pull Request</li>
+                                <li><strong>Commit（提交）</strong>：保存当前代码状态的快照</li>
+                                <li><strong>Branch（分支）</strong>：独立的开发线，不影响主线</li>
+                                <li><strong>Merge（合并）</strong>：将分支改动合并回主线</li>
+                                <li><strong>Push/Pull</strong>：上传/下载代码到远程仓库</li>
                             </ul>
+                        </div>
+                        <div class="content-section">
+                            <h3>常用命令</h3>
+                            <pre><code>git status          # 查看改动
+git add .           # 暂存所有文件
+git commit -m "msg" # 提交
+git push            # 推送到远程
+git pull            # 拉取最新代码</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is Git?</h3>
-                            <p>Git is a distributed version control system that records every file modification. Like game save points, you can return to previous versions anytime.</p>
+                            <h3>What Is Git?</h3>
+                            <p><strong>Git</strong> is a version control system, like a "time machine" for code that saves snapshots of every change.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Basic Commands</h3>
-                            <pre><code class="language-bash"># Initialize repository
-git init
-
-# Add files to staging
-git add .
-
-# Commit changes
-git commit -m "Describe your changes"
-
-# Check status
-git status
-
-# View history
-git log
-
-# Create branch
-git branch feature-name
-
-# Switch branch
-git checkout feature-name
-
-# Merge branch
-git merge feature-name</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>GitHub Workflow</h3>
+                            <h3>Core Concepts</h3>
                             <ul>
-                                <li>Fork project to your account</li>
-                                <li>Clone to local</li>
-                                <li>Create new branch for development</li>
-                                <li>Push to remote repository</li>
-                                <li>Create Pull Request</li>
+                                <li><strong>Commit</strong>: Save a snapshot of current code state</li>
+                                <li><strong>Branch</strong>: Independent development line without affecting main</li>
+                                <li><strong>Merge</strong>: Combine branch changes back to main</li>
+                                <li><strong>Push/Pull</strong>: Upload/download code to/from remote repository</li>
                             </ul>
+                        </div>
+                        <div class="content-section">
+                            <h3>Common Commands</h3>
+                            <pre><code>git status          # Check changes
+git add .           # Stage all files
+git commit -m "msg" # Commit
+git push            # Push to remote
+git pull            # Pull latest code</code></pre>
                         </div>
                     `
                 }
@@ -1506,68 +1338,52 @@ git merge feature-name</code></pre>
             {
                 id: 12,
                 category: 'dev',
-                icon: '📝',
-                title: { zh: '代码编辑器', en: 'Code Editors' },
+                icon: '🔐',
+                title: { zh: '环境变量', en: 'Environment Variables' },
                 description: {
-                    zh: '选择合适的开发工具提升效率',
-                    en: 'Choose the right development tools to boost productivity'
+                    zh: '.env 文件与密钥管理',
+                    en: '.env files and secrets management'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>主流编辑器</h3>
-                            <ul>
-                                <li><strong>VS Code</strong>：最流行，插件丰富，轻量快速</li>
-                                <li><strong>Cursor</strong>：AI 原生编辑器，基于 VS Code</li>
-                                <li><strong>WebStorm</strong>：功能强大，适合大型项目</li>
-                                <li><strong>Vim/Neovim</strong>：效率极高，学习曲线陡峭</li>
-                            </ul>
+                            <h3>什么是环境变量？</h3>
+                            <p><strong>环境变量</strong>是存储敏感信息（API 密钥、数据库密码）的配置，不能直接写在代码里。</p>
                         </div>
                         <div class="content-section">
-                            <h3>必装 VS Code 插件</h3>
-                            <ul>
-                                <li><strong>Prettier</strong>：代码格式化</li>
-                                <li><strong>ESLint</strong>：代码质量检查</li>
-                                <li><strong>GitLens</strong>：增强 Git 功能</li>
-                                <li><strong>GitHub Copilot</strong>：AI 代码补全</li>
-                                <li><strong>Live Server</strong>：本地预览网页</li>
-                            </ul>
+                            <h3>.env 文件</h3>
+                            <p>通常创建 <code>.env</code> 文件来存储：</p>
+                            <pre><code>DATABASE_URL=postgresql://localhost/mydb
+API_KEY=sk-1234567890abcdef
+STRIPE_SECRET=sk_test_xxx</code></pre>
                         </div>
                         <div class="content-section">
-                            <h3>AI 辅助编程工具</h3>
+                            <h3>重要规则</h3>
                             <ul>
-                                <li><strong>GitHub Copilot</strong>：代码自动补全</li>
-                                <li><strong>Cursor</strong>：对话式编程</li>
-                                <li><strong>Tabnine</strong>：智能代码建议</li>
+                                <li>⚠️ <strong>绝对不要提交 .env 到 Git</strong></li>
+                                <li>将 .env 加入 .gitignore</li>
+                                <li>使用 .env.example 作为模板</li>
                             </ul>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Popular Editors</h3>
-                            <ul>
-                                <li><strong>VS Code</strong>: Most popular, rich plugins, lightweight and fast</li>
-                                <li><strong>Cursor</strong>: AI-native editor, based on VS Code</li>
-                                <li><strong>WebStorm</strong>: Powerful, great for large projects</li>
-                                <li><strong>Vim/Neovim</strong>: Extremely efficient, steep learning curve</li>
-                            </ul>
+                            <h3>What Are Environment Variables?</h3>
+                            <p><strong>Environment variables</strong> store sensitive info (API keys, database passwords) that shouldn't be directly in code.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Must-Have VS Code Extensions</h3>
-                            <ul>
-                                <li><strong>Prettier</strong>: Code formatting</li>
-                                <li><strong>ESLint</strong>: Code quality checking</li>
-                                <li><strong>GitLens</strong>: Enhanced Git features</li>
-                                <li><strong>GitHub Copilot</strong>: AI code completion</li>
-                                <li><strong>Live Server</strong>: Local web preview</li>
-                            </ul>
+                            <h3>.env File</h3>
+                            <p>Usually create a <code>.env</code> file to store:</p>
+                            <pre><code>DATABASE_URL=postgresql://localhost/mydb
+API_KEY=sk-1234567890abcdef
+STRIPE_SECRET=sk_test_xxx</code></pre>
                         </div>
                         <div class="content-section">
-                            <h3>AI-Assisted Programming Tools</h3>
+                            <h3>Important Rules</h3>
                             <ul>
-                                <li><strong>GitHub Copilot</strong>: Auto code completion</li>
-                                <li><strong>Cursor</strong>: Conversational programming</li>
-                                <li><strong>Tabnine</strong>: Smart code suggestions</li>
+                                <li>⚠️ <strong>Never commit .env to Git</strong></li>
+                                <li>Add .env to .gitignore</li>
+                                <li>Use .env.example as template</li>
                             </ul>
                         </div>
                     `
@@ -1576,75 +1392,57 @@ git merge feature-name</code></pre>
             {
                 id: 13,
                 category: 'dev',
-                icon: '🛠️',
-                title: { zh: '开发框架', en: 'Development Frameworks' },
+                icon: '📦',
+                title: { zh: '依赖与包管理器', en: 'Dependencies & Package Managers' },
                 description: {
-                    zh: '加速开发的预制工具和结构',
-                    en: 'Pre-built tools and structures to accelerate development'
+                    zh: 'npm/pip 安装第三方库',
+                    en: 'Installing third-party libraries with npm/pip'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>前端框架</h3>
+                            <h3>什么是依赖？</h3>
+                            <p><strong>依赖（Dependencies）</strong>是你的项目需要的外部代码库，比如 React、Express 等。</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>包管理器</h3>
+                            <p>不同语言有不同的包管理器：</p>
                             <ul>
-                                <li><strong>React</strong>：最流行，生态丰富，Meta 开发</li>
-                                <li><strong>Vue</strong>：易学易用，中文文档友好</li>
-                                <li><strong>Svelte</strong>：性能出色，编译时优化</li>
-                                <li><strong>Next.js</strong>：React 全栈框架，SEO 友好</li>
+                                <li><strong>JavaScript</strong>: npm, yarn, pnpm</li>
+                                <li><strong>Python</strong>: pip, poetry</li>
+                                <li><strong>Ruby</strong>: gem, bundler</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>后端框架</h3>
-                            <ul>
-                                <li><strong>Express.js</strong>（Node.js）：轻量灵活</li>
-                                <li><strong>FastAPI</strong>（Python）：快速构建 API</li>
-                                <li><strong>Django</strong>（Python）：功能全面</li>
-                                <li><strong>Spring Boot</strong>（Java）：企业级</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>全栈框架</h3>
-                            <ul>
-                                <li><strong>Next.js</strong>：React 生态</li>
-                                <li><strong>Nuxt.js</strong>：Vue 生态</li>
-                                <li><strong>Remix</strong>：现代化 React 框架</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>选择建议</h3>
-                            <p>初学者：Vue 或 React + Express。快速原型：Next.js。企业级：Spring Boot 或 Django。</p>
+                            <h3>常用命令（npm）</h3>
+                            <pre><code>npm install        # 安装所有依赖
+npm install react  # 安装单个包
+npm update         # 更新依赖
+npm uninstall xxx  # 卸载包</code></pre>
+                            <p>依赖信息记录在 <code>package.json</code></p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Frontend Frameworks</h3>
+                            <h3>What Are Dependencies?</h3>
+                            <p><strong>Dependencies</strong> are external code libraries your project needs, like React, Express, etc.</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>Package Managers</h3>
+                            <p>Different languages have different package managers:</p>
                             <ul>
-                                <li><strong>React</strong>: Most popular, rich ecosystem, by Meta</li>
-                                <li><strong>Vue</strong>: Easy to learn, Chinese-friendly docs</li>
-                                <li><strong>Svelte</strong>: Excellent performance, compile-time optimization</li>
-                                <li><strong>Next.js</strong>: React full-stack, SEO-friendly</li>
+                                <li><strong>JavaScript</strong>: npm, yarn, pnpm</li>
+                                <li><strong>Python</strong>: pip, poetry</li>
+                                <li><strong>Ruby</strong>: gem, bundler</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Backend Frameworks</h3>
-                            <ul>
-                                <li><strong>Express.js</strong> (Node.js): Lightweight and flexible</li>
-                                <li><strong>FastAPI</strong> (Python): Rapid API development</li>
-                                <li><strong>Django</strong> (Python): Feature-complete</li>
-                                <li><strong>Spring Boot</strong> (Java): Enterprise-grade</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Full-Stack Frameworks</h3>
-                            <ul>
-                                <li><strong>Next.js</strong>: React ecosystem</li>
-                                <li><strong>Nuxt.js</strong>: Vue ecosystem</li>
-                                <li><strong>Remix</strong>: Modern React framework</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Recommendations</h3>
-                            <p>Beginners: Vue or React + Express. Rapid prototyping: Next.js. Enterprise: Spring Boot or Django.</p>
+                            <h3>Common Commands (npm)</h3>
+                            <pre><code>npm install        # Install all dependencies
+npm install react  # Install single package
+npm update         # Update dependencies
+npm uninstall xxx  # Uninstall package</code></pre>
+                            <p>Dependencies are recorded in <code>package.json</code></p>
                         </div>
                     `
                 }
@@ -1652,89 +1450,59 @@ git merge feature-name</code></pre>
             {
                 id: 14,
                 category: 'dev',
-                icon: '📦',
-                title: { zh: '包管理器', en: 'Package Managers' },
+                icon: '🚀',
+                title: { zh: '本地运行项目', en: 'Running Projects Locally' },
                 description: {
-                    zh: '管理项目依赖和第三方库',
-                    en: 'Managing project dependencies and third-party libraries'
+                    zh: 'localhost 和开发服务器',
+                    en: 'localhost and development servers'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是包管理器？</h3>
-                            <p>包管理器帮助你安装、更新和管理项目依赖。不用手动下载和复制代码，一条命令搞定。</p>
+                            <h3>什么是本地运行？</h3>
+                            <p><strong>本地运行</strong>是在自己电脑上启动项目，通过浏览器访问 <code>localhost</code> 查看效果。</p>
                         </div>
                         <div class="content-section">
-                            <h3>主流包管理器</h3>
+                            <h3>localhost 地址</h3>
                             <ul>
-                                <li><strong>npm</strong>：Node.js 默认，最流行</li>
-                                <li><strong>yarn</strong>：Facebook 开发，速度快</li>
-                                <li><strong>pnpm</strong>：节省磁盘空间，性能好</li>
-                                <li><strong>pip</strong>：Python 包管理器</li>
+                                <li><code>localhost:3000</code> - 常见的 React 开发端口</li>
+                                <li><code>localhost:8000</code> - Django 默认端口</li>
+                                <li><code>127.0.0.1</code> - localhost 的 IP 地址</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>常用命令（npm）</h3>
-                            <pre><code class="language-bash"># 初始化项目
-npm init
+                            <h3>启动命令</h3>
+                            <pre><code># JavaScript/Node.js
+npm run dev
+npm start
 
-# 安装依赖
-npm install package-name
-
-# 安装开发依赖
-npm install --save-dev package-name
-
-# 全局安装
-npm install -g package-name
-
-# 更新依赖
-npm update
-
-# 运行脚本
-npm run dev</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>package.json</h3>
-                            <p>项目配置文件，记录依赖、脚本、版本等信息。团队协作时确保环境一致。</p>
+# Python
+python manage.py runserver
+flask run</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What are Package Managers?</h3>
-                            <p>Package managers help you install, update, and manage project dependencies. No manual downloading or copying code - one command does it all.</p>
+                            <h3>What Is Running Locally?</h3>
+                            <p><strong>Running locally</strong> means starting the project on your computer and viewing it at <code>localhost</code> in a browser.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Popular Package Managers</h3>
+                            <h3>localhost Addresses</h3>
                             <ul>
-                                <li><strong>npm</strong>: Node.js default, most popular</li>
-                                <li><strong>yarn</strong>: Developed by Facebook, fast</li>
-                                <li><strong>pnpm</strong>: Saves disk space, great performance</li>
-                                <li><strong>pip</strong>: Python package manager</li>
+                                <li><code>localhost:3000</code> - Common React dev port</li>
+                                <li><code>localhost:8000</code> - Django default port</li>
+                                <li><code>127.0.0.1</code> - IP address for localhost</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Common Commands (npm)</h3>
-                            <pre><code class="language-bash"># Initialize project
-npm init
+                            <h3>Start Commands</h3>
+                            <pre><code># JavaScript/Node.js
+npm run dev
+npm start
 
-# Install dependency
-npm install package-name
-
-# Install dev dependency
-npm install --save-dev package-name
-
-# Global install
-npm install -g package-name
-
-# Update dependencies
-npm update
-
-# Run script
-npm run dev</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>package.json</h3>
-                            <p>Project configuration file that records dependencies, scripts, versions, etc. Ensures consistent environments in team collaboration.</p>
+# Python
+python manage.py runserver
+flask run</code></pre>
                         </div>
                     `
                 }
@@ -1742,969 +1510,701 @@ npm run dev</code></pre>
             {
                 id: 15,
                 category: 'dev',
-                icon: '🧪',
-                title: { zh: '测试基础', en: 'Testing Fundamentals' },
+                icon: '🌐',
+                title: { zh: '部署到生产环境', en: 'Deploy to Production' },
                 description: {
-                    zh: '确保代码质量和功能正确性',
-                    en: 'Ensuring code quality and functional correctness'
+                    zh: 'Vercel/Netlify 等平台',
+                    en: 'Platforms like Vercel/Netlify'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>为什么要测试？</h3>
-                            <p>测试帮助你发现 bug、防止回归、提高代码质量、便于重构。专业开发者都写测试。</p>
+                            <h3>什么是部署？</h3>
+                            <p><strong>部署（Deploy）</strong>是将本地项目上传到云服务器，让其他人可以通过互联网访问。</p>
                         </div>
                         <div class="content-section">
-                            <h3>测试类型</h3>
+                            <h3>常见部署平台</h3>
                             <ul>
-                                <li><strong>单元测试</strong>：测试单个函数或组件</li>
-                                <li><strong>集成测试</strong>：测试多个模块协作</li>
-                                <li><strong>端到端测试（E2E）</strong>：模拟真实用户操作</li>
+                                <li><strong>Vercel</strong>：前端项目（Next.js、React）</li>
+                                <li><strong>Netlify</strong>：静态网站</li>
+                                <li><strong>Railway</strong>：全栈应用</li>
+                                <li><strong>Heroku</strong>：后端服务</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>流行测试框架</h3>
-                            <ul>
-                                <li><strong>Jest</strong>：JavaScript，易用全面</li>
-                                <li><strong>Vitest</strong>：更快的 Jest 替代品</li>
-                                <li><strong>Pytest</strong>：Python 测试框架</li>
-                                <li><strong>Playwright</strong>：E2E 测试</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>简单示例（Jest）</h3>
-                            <pre><code class="language-javascript">// sum.js
-function sum(a, b) {
-    return a + b;
-}
-
-// sum.test.js
-test('adds 1 + 2 to equal 3', () => {
-    expect(sum(1, 2)).toBe(3);
-});</code></pre>
+                            <h3>部署流程（以 Vercel 为例）</h3>
+                            <ol>
+                                <li>将代码推送到 GitHub</li>
+                                <li>在 Vercel 连接 GitHub 仓库</li>
+                                <li>Vercel 自动构建和部署</li>
+                                <li>获得生产环境 URL</li>
+                            </ol>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Why Test?</h3>
-                            <p>Testing helps find bugs, prevent regressions, improve code quality, and facilitate refactoring. Professional developers write tests.</p>
+                            <h3>What Is Deployment?</h3>
+                            <p><strong>Deploy</strong> means uploading your local project to cloud servers so others can access it via the internet.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Types of Tests</h3>
+                            <h3>Common Deployment Platforms</h3>
                             <ul>
-                                <li><strong>Unit Tests</strong>: Test individual functions or components</li>
-                                <li><strong>Integration Tests</strong>: Test multiple modules working together</li>
-                                <li><strong>End-to-End Tests (E2E)</strong>: Simulate real user interactions</li>
+                                <li><strong>Vercel</strong>: Frontend projects (Next.js, React)</li>
+                                <li><strong>Netlify</strong>: Static websites</li>
+                                <li><strong>Railway</strong>: Full-stack apps</li>
+                                <li><strong>Heroku</strong>: Backend services</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Popular Testing Frameworks</h3>
-                            <ul>
-                                <li><strong>Jest</strong>: JavaScript, easy and comprehensive</li>
-                                <li><strong>Vitest</strong>: Faster Jest alternative</li>
-                                <li><strong>Pytest</strong>: Python testing framework</li>
-                                <li><strong>Playwright</strong>: E2E testing</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Simple Example (Jest)</h3>
-                            <pre><code class="language-javascript">// sum.js
-function sum(a, b) {
-    return a + b;
-}
-
-// sum.test.js
-test('adds 1 + 2 to equal 3', () => {
-    expect(sum(1, 2)).toBe(3);
-});</code></pre>
+                            <h3>Deployment Flow (Vercel Example)</h3>
+                            <ol>
+                                <li>Push code to GitHub</li>
+                                <li>Connect GitHub repo in Vercel</li>
+                                <li>Vercel auto-builds and deploys</li>
+                                <li>Get production URL</li>
+                            </ol>
                         </div>
                     `
                 }
             },
+            // 4. 调试优化 (debugging) - 4个
             {
                 id: 16,
-                category: 'deployment',
-                icon: '🚀',
-                title: { zh: '部署托管', en: 'Deployment & Hosting' },
+                category: 'debugging',
+                icon: '⚠️',
+                title: { zh: '读懂错误信息', en: 'Understanding Error Messages' },
                 description: {
-                    zh: '将应用发布到互联网供用户访问',
-                    en: 'Publishing applications to the internet for user access'
+                    zh: '终端错误与堆栈追踪',
+                    en: 'Terminal errors and stack traces'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>流行托管平台</h3>
+                            <h3>错误信息的结构</h3>
+                            <p>当代码出错时，终端会显示错误信息，通常包含：</p>
                             <ul>
-                                <li><strong>Vercel</strong>：前端项目首选，自动部署，零配置</li>
-                                <li><strong>Netlify</strong>：类似 Vercel，免费额度高</li>
-                                <li><strong>Railway</strong>：全栈应用，支持数据库</li>
-                                <li><strong>Fly.io</strong>：全球部署，适合后端</li>
-                                <li><strong>AWS/Azure/GCP</strong>：企业级，功能全面</li>
+                                <li><strong>错误类型</strong>：SyntaxError、TypeError、ReferenceError</li>
+                                <li><strong>错误描述</strong>：问题是什么</li>
+                                <li><strong>文件位置</strong>：哪个文件的哪一行</li>
+                                <li><strong>堆栈追踪</strong>：函数调用链</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>部署流程（Vercel）</h3>
-                            <ul>
-                                <li>1. 将代码推送到 GitHub</li>
-                                <li>2. 连接 Vercel 到你的仓库</li>
-                                <li>3. 自动检测框架并配置</li>
-                                <li>4. 每次推送自动重新部署</li>
-                            </ul>
+                            <h3>示例</h3>
+                            <pre><code>TypeError: Cannot read property 'name' of undefined
+    at getUserName (app.js:15:20)
+    at main (app.js:42:10)</code></pre>
+                            <p>解读：在 app.js 的第 15 行，尝试访问 undefined 的 name 属性</p>
                         </div>
                         <div class="content-section">
-                            <h3>环境变量</h3>
-                            <p>敏感信息（如 API 密钥）不要直接写在代码里，使用环境变量：</p>
-                            <pre><code class="language-bash"># .env 文件
-DATABASE_URL=your-database-url
-API_KEY=your-api-key</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>自定义域名</h3>
-                            <p>大多数平台支持绑定自定义域名，需要配置 DNS 记录。</p>
+                            <h3>调试技巧</h3>
+                            <p>将错误信息<strong>完整复制</strong>给 AI 代理，它能快速定位问题。</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Popular Hosting Platforms</h3>
+                            <h3>Error Message Structure</h3>
+                            <p>When code fails, the terminal shows error messages usually containing:</p>
                             <ul>
-                                <li><strong>Vercel</strong>: Frontend first choice, auto-deploy, zero-config</li>
-                                <li><strong>Netlify</strong>: Similar to Vercel, generous free tier</li>
-                                <li><strong>Railway</strong>: Full-stack apps, database support</li>
-                                <li><strong>Fly.io</strong>: Global deployment, great for backend</li>
-                                <li><strong>AWS/Azure/GCP</strong>: Enterprise-grade, comprehensive</li>
+                                <li><strong>Error type</strong>: SyntaxError, TypeError, ReferenceError</li>
+                                <li><strong>Error description</strong>: What the problem is</li>
+                                <li><strong>File location</strong>: Which file and line</li>
+                                <li><strong>Stack trace</strong>: Function call chain</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Deployment Process (Vercel)</h3>
-                            <ul>
-                                <li>1. Push code to GitHub</li>
-                                <li>2. Connect Vercel to your repository</li>
-                                <li>3. Auto-detect framework and configure</li>
-                                <li>4. Auto-redeploy on every push</li>
-                            </ul>
+                            <h3>Example</h3>
+                            <pre><code>TypeError: Cannot read property 'name' of undefined
+    at getUserName (app.js:15:20)
+    at main (app.js:42:10)</code></pre>
+                            <p>Translation: At line 15 in app.js, trying to access name property of undefined</p>
                         </div>
                         <div class="content-section">
-                            <h3>Environment Variables</h3>
-                            <p>Don't hard-code sensitive info (like API keys) - use environment variables:</p>
-                            <pre><code class="language-bash"># .env file
-DATABASE_URL=your-database-url
-API_KEY=your-api-key</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Custom Domains</h3>
-                            <p>Most platforms support custom domain binding - requires DNS configuration.</p>
+                            <h3>Debugging Tip</h3>
+                            <p><strong>Copy the entire error message</strong> to the AI agent - it can quickly locate the issue.</p>
                         </div>
                     `
                 }
             },
             {
                 id: 17,
-                category: 'deployment',
-                icon: '🐳',
-                title: { zh: 'Docker 容器', en: 'Docker Containers' },
+                category: 'debugging',
+                icon: '🔧',
+                title: { zh: 'Chrome DevTools', en: 'Chrome DevTools' },
                 description: {
-                    zh: '打包应用及其依赖，实现一致的运行环境',
-                    en: 'Package apps with dependencies for consistent runtime environments'
+                    zh: '浏览器调试工具',
+                    en: 'Browser debugging tools'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 Docker？</h3>
-                            <p>Docker 将应用和所有依赖打包成容器，确保在任何环境都能一致运行。"在我机器上能跑"不再是借口。</p>
+                            <h3>什么是 DevTools？</h3>
+                            <p><strong>Chrome DevTools</strong> 是浏览器内置的开发者工具，用于调试前端代码。</p>
+                            <p>打开方式：<kbd>F12</kbd> 或右键 → 检查</p>
                         </div>
                         <div class="content-section">
-                            <h3>核心概念</h3>
+                            <h3>常用面板</h3>
                             <ul>
-                                <li><strong>镜像（Image）</strong>：应用的只读模板</li>
-                                <li><strong>容器（Container）</strong>：镜像的运行实例</li>
-                                <li><strong>Dockerfile</strong>：构建镜像的配置文件</li>
+                                <li><strong>Console</strong>：查看日志和错误</li>
+                                <li><strong>Elements</strong>：检查 HTML/CSS</li>
+                                <li><strong>Network</strong>：查看网络请求</li>
+                                <li><strong>Sources</strong>：调试 JavaScript</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Dockerfile 示例</h3>
-                            <pre><code class="language-dockerfile">FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>常用命令</h3>
-                            <pre><code class="language-bash"># 构建镜像
-docker build -t my-app .
-
-# 运行容器
-docker run -p 3000:3000 my-app
-
-# 查看运行中的容器
-docker ps
-
-# 停止容器
-docker stop container-id</code></pre>
+                            <h3>调试技巧</h3>
+                            <p>在 Console 中使用：</p>
+                            <pre><code>console.log(myVariable)
+console.error('Error!')
+debugger  // 设置断点</code></pre>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is Docker?</h3>
-                            <p>Docker packages applications and all dependencies into containers, ensuring consistent execution in any environment. "Works on my machine" is no longer an excuse.</p>
+                            <h3>What Is DevTools?</h3>
+                            <p><strong>Chrome DevTools</strong> is the browser's built-in developer tools for debugging frontend code.</p>
+                            <p>Open with: <kbd>F12</kbd> or Right-click → Inspect</p>
                         </div>
                         <div class="content-section">
-                            <h3>Core Concepts</h3>
+                            <h3>Common Panels</h3>
                             <ul>
-                                <li><strong>Image</strong>: Read-only template of the application</li>
-                                <li><strong>Container</strong>: Running instance of an image</li>
-                                <li><strong>Dockerfile</strong>: Configuration file for building images</li>
+                                <li><strong>Console</strong>: View logs and errors</li>
+                                <li><strong>Elements</strong>: Inspect HTML/CSS</li>
+                                <li><strong>Network</strong>: View network requests</li>
+                                <li><strong>Sources</strong>: Debug JavaScript</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Dockerfile Example</h3>
-                            <pre><code class="language-dockerfile">FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "start"]</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Common Commands</h3>
-                            <pre><code class="language-bash"># Build image
-docker build -t my-app .
-
-# Run container
-docker run -p 3000:3000 my-app
-
-# View running containers
-docker ps
-
-# Stop container
-docker stop container-id</code></pre>
+                            <h3>Debugging Tips</h3>
+                            <p>Use in Console:</p>
+                            <pre><code>console.log(myVariable)
+console.error('Error!')
+debugger  // Set breakpoint</code></pre>
                         </div>
                     `
                 }
             },
             {
                 id: 18,
-                category: 'deployment',
-                icon: '⚙️',
-                title: { zh: 'CI/CD 持续集成', en: 'CI/CD' },
+                category: 'debugging',
+                icon: '🧪',
+                title: { zh: '测试驱动调试', en: 'Test-Driven Debugging' },
                 description: {
-                    zh: '自动化构建、测试和部署流程',
-                    en: 'Automated build, test, and deployment processes'
+                    zh: '先写测试再修 bug',
+                    en: 'Write tests before fixing bugs'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>什么是 CI/CD？</h3>
-                            <p><strong>CI（持续集成）</strong>：频繁合并代码到主分支，自动运行测试。<strong>CD（持续交付/部署）</strong>：自动将通过测试的代码部署到生产环境。</p>
+                            <h3>什么是测试驱动调试？</h3>
+                            <p><strong>测试驱动调试</strong>的理念：发现 bug 后，先写一个能复现该 bug 的测试，再修复。</p>
                         </div>
                         <div class="content-section">
-                            <h3>流行工具</h3>
-                            <ul>
-                                <li><strong>GitHub Actions</strong>：GitHub 原生，配置简单</li>
-                                <li><strong>GitLab CI</strong>：GitLab 集成</li>
-                                <li><strong>Jenkins</strong>：功能强大，自托管</li>
-                                <li><strong>CircleCI</strong>：云端 CI/CD</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>GitHub Actions 示例</h3>
-                            <pre><code class="language-yaml"># .github/workflows/deploy.yml
-name: Deploy
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
-      - name: Build
-        run: npm run build
-      - name: Deploy
-        run: npm run deploy</code></pre>
+                            <h3>工作流程</h3>
+                            <ol>
+                                <li>发现 bug：比如登录失败</li>
+                                <li>写测试：验证登录功能</li>
+                                <li>测试失败：确认 bug 存在</li>
+                                <li>修复代码：让测试通过</li>
+                                <li>确保修复：测试通过，bug 修复</li>
+                            </ol>
                         </div>
                         <div class="content-section">
                             <h3>好处</h3>
-                            <p>减少人为错误、快速反馈、提高部署频率、团队效率提升。</p>
+                            <ul>
+                                <li>防止同样的 bug 再次出现</li>
+                                <li>确保修复有效</li>
+                                <li>建立回归测试套件</li>
+                            </ul>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>What is CI/CD?</h3>
-                            <p><strong>CI (Continuous Integration)</strong>: Frequently merge code to main branch, auto-run tests. <strong>CD (Continuous Delivery/Deployment)</strong>: Automatically deploy tested code to production.</p>
+                            <h3>What Is Test-Driven Debugging?</h3>
+                            <p><strong>Test-driven debugging</strong> philosophy: After finding a bug, first write a test that reproduces it, then fix.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Popular Tools</h3>
-                            <ul>
-                                <li><strong>GitHub Actions</strong>: Native to GitHub, simple config</li>
-                                <li><strong>GitLab CI</strong>: Integrated with GitLab</li>
-                                <li><strong>Jenkins</strong>: Powerful, self-hosted</li>
-                                <li><strong>CircleCI</strong>: Cloud-based CI/CD</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>GitHub Actions Example</h3>
-                            <pre><code class="language-yaml"># .github/workflows/deploy.yml
-name: Deploy
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
-      - name: Build
-        run: npm run build
-      - name: Deploy
-        run: npm run deploy</code></pre>
+                            <h3>Workflow</h3>
+                            <ol>
+                                <li>Find bug: e.g. login failing</li>
+                                <li>Write test: Verify login functionality</li>
+                                <li>Test fails: Confirm bug exists</li>
+                                <li>Fix code: Make test pass</li>
+                                <li>Ensure fix: Test passes, bug fixed</li>
+                            </ol>
                         </div>
                         <div class="content-section">
                             <h3>Benefits</h3>
-                            <p>Reduce human error, fast feedback, increase deployment frequency, improve team efficiency.</p>
+                            <ul>
+                                <li>Prevent same bug from recurring</li>
+                                <li>Ensure fix is effective</li>
+                                <li>Build regression test suite</li>
+                            </ul>
                         </div>
                     `
                 }
             },
             {
                 id: 19,
-                category: 'deployment',
-                icon: '🔒',
-                title: { zh: '环境变量与密钥', en: 'Environment Variables & Secrets' },
+                category: 'debugging',
+                icon: '🧠',
+                title: { zh: '上下文窗口', en: 'Context Windows' },
                 description: {
-                    zh: '安全管理敏感配置信息',
-                    en: 'Securely managing sensitive configuration data'
+                    zh: 'Token 限制与代理记忆',
+                    en: 'Token limits and agent memory'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
+                            <h3>什么是上下文窗口？</h3>
+                            <p><strong>上下文窗口</strong>是 AI 代理能"记住"的信息量，以 token 为单位计量。</p>
+                            <p>比如 Claude 的上下文窗口是 200K tokens，约 15 万个单词。</p>
+                        </div>
+                        <div class="content-section">
                             <h3>为什么重要？</h3>
-                            <p>API 密钥、数据库密码等敏感信息不应出现在代码中。一旦泄露，可能导致安全问题和经济损失。</p>
-                        </div>
-                        <div class="content-section">
-                            <h3>环境变量</h3>
-                            <p>根据环境（开发、测试、生产）使用不同配置：</p>
-                            <pre><code class="language-bash"># .env.development
-API_URL=http://localhost:3000
-DEBUG=true
-
-# .env.production
-API_URL=https://api.example.com
-DEBUG=false</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>使用环境变量</h3>
-                            <pre><code class="language-javascript">// Node.js
-const apiUrl = process.env.API_URL;
-
-// Next.js (客户端可访问，需前缀 NEXT_PUBLIC_)
-const publicKey = process.env.NEXT_PUBLIC_API_KEY;</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>最佳实践</h3>
+                            <p>超过上下文窗口后，代理会"忘记"早期的对话内容：</p>
                             <ul>
-                                <li>永远不要将 .env 文件提交到 Git</li>
-                                <li>在 .gitignore 中添加 .env*</li>
-                                <li>提供 .env.example 作为模板</li>
-                                <li>使用密钥管理服务（如 AWS Secrets Manager）</li>
+                                <li>项目结构信息</li>
+                                <li>之前的指令</li>
+                                <li>已读取的代码</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <h3>管理策略</h3>
+                            <ul>
+                                <li>定期刷新会话</li>
+                                <li>使用 MEMORY 文件存储关键信息</li>
+                                <li>避免一次性读取大量文件</li>
+                                <li>使用 agents.md 存储项目规则</li>
                             </ul>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Why Important?</h3>
-                            <p>Sensitive info like API keys and database passwords shouldn't appear in code. Leaks can lead to security issues and financial losses.</p>
+                            <h3>What Is a Context Window?</h3>
+                            <p><strong>Context window</strong> is the amount of information an AI agent can "remember", measured in tokens.</p>
+                            <p>For example, Claude's context window is 200K tokens, about 150,000 words.</p>
                         </div>
                         <div class="content-section">
-                            <h3>Environment Variables</h3>
-                            <p>Use different configs for different environments (dev, test, production):</p>
-                            <pre><code class="language-bash"># .env.development
-API_URL=http://localhost:3000
-DEBUG=true
-
-# .env.production
-API_URL=https://api.example.com
-DEBUG=false</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Using Environment Variables</h3>
-                            <pre><code class="language-javascript">// Node.js
-const apiUrl = process.env.API_URL;
-
-// Next.js (client-accessible, needs NEXT_PUBLIC_ prefix)
-const publicKey = process.env.NEXT_PUBLIC_API_KEY;</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Best Practices</h3>
+                            <h3>Why Does It Matter?</h3>
+                            <p>After exceeding the context window, the agent "forgets" early conversation content:</p>
                             <ul>
-                                <li>Never commit .env files to Git</li>
-                                <li>Add .env* to .gitignore</li>
-                                <li>Provide .env.example as template</li>
-                                <li>Use secret management services (like AWS Secrets Manager)</li>
+                                <li>Project structure info</li>
+                                <li>Previous instructions</li>
+                                <li>Code already read</li>
+                            </ul>
+                        </div>
+                        <div class="content-section">
+                            <h3>Management Strategies</h3>
+                            <ul>
+                                <li>Periodically refresh session</li>
+                                <li>Use MEMORY files to store key info</li>
+                                <li>Avoid reading too many files at once</li>
+                                <li>Use agents.md to store project rules</li>
                             </ul>
                         </div>
                     `
                 }
             },
+            // 5. 工作流程 (workflow) - 4个
             {
                 id: 20,
-                category: 'debugging',
-                icon: '🐛',
-                title: { zh: '调试技巧', en: 'Debugging Techniques' },
+                category: 'workflow',
+                icon: '✅',
+                title: { zh: '调试前检查清单', en: 'Pre-Debugging Checklist' },
                 description: {
-                    zh: '快速定位和解决代码问题',
-                    en: 'Quickly locate and fix code issues'
+                    zh: 'commit、刷新会话、检查配置',
+                    en: 'commit, refresh session, check config'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>基础调试方法</h3>
-                            <ul>
-                                <li><strong>console.log</strong>：最简单，打印变量查看值</li>
-                                <li><strong>浏览器开发者工具</strong>：F12 打开，查看网络、控制台、元素</li>
-                                <li><strong>断点调试</strong>：在代码中设置断点，逐步执行</li>
-                            </ul>
+                            <h3>为什么需要清单？</h3>
+                            <p>在 AI 代理调试前，先做这些检查可以避免浪费时间：</p>
                         </div>
                         <div class="content-section">
-                            <h3>Chrome DevTools 技巧</h3>
-                            <pre><code class="language-javascript">// 条件断点：只在特定条件下暂停
-// 右键断点 -> Edit breakpoint -> 输入条件
-
-// console 技巧
-console.table([{name: 'Alice', age: 25}, {name: 'Bob', age: 30}]);
-console.time('operation');
-// ... 代码
-console.timeEnd('operation');</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>VS Code 调试</h3>
-                            <p>配置 launch.json 进行调试：</p>
-                            <pre><code class="language-json">{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "program": "\${workspaceFolder}/app.js"
-    }
-  ]
-}</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>调试思维</h3>
-                            <ul>
-                                <li>复现问题：确保能稳定重现</li>
-                                <li>隔离问题：二分法缩小范围</li>
-                                <li>假设验证：猜测原因并测试</li>
-                                <li>查看日志：错误信息往往很关键</li>
-                            </ul>
+                            <h3>检查清单</h3>
+                            <ol>
+                                <li><strong>✅ 提交当前代码</strong>
+                                    <p>保存进度，方便回滚：<code>git add . && git commit -m "保存当前状态"</code></p>
+                                </li>
+                                <li><strong>✅ 刷新会话</strong>
+                                    <p>如果对话太长，重新开始以清空上下文</p>
+                                </li>
+                                <li><strong>✅ 检查配置文件</strong>
+                                    <p>确认 agents.md、.env、package.json 都正确</p>
+                                </li>
+                                <li><strong>✅ 验证环境</strong>
+                                    <p>运行 <code>npm install</code> 确保依赖已安装</p>
+                                </li>
+                            </ol>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Basic Debugging Methods</h3>
-                            <ul>
-                                <li><strong>console.log</strong>: Simplest, print variables to check values</li>
-                                <li><strong>Browser DevTools</strong>: Press F12, check Network, Console, Elements</li>
-                                <li><strong>Breakpoint Debugging</strong>: Set breakpoints in code, step through execution</li>
-                            </ul>
+                            <h3>Why Need a Checklist?</h3>
+                            <p>Before having the AI agent debug, these checks can save time:</p>
                         </div>
                         <div class="content-section">
-                            <h3>Chrome DevTools Tips</h3>
-                            <pre><code class="language-javascript">// Conditional breakpoint: pause only under specific conditions
-// Right-click breakpoint -> Edit breakpoint -> Enter condition
-
-// Console tricks
-console.table([{name: 'Alice', age: 25}, {name: 'Bob', age: 30}]);
-console.time('operation');
-// ... code
-console.timeEnd('operation');</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>VS Code Debugging</h3>
-                            <p>Configure launch.json for debugging:</p>
-                            <pre><code class="language-json">{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "program": "\${workspaceFolder}/app.js"
-    }
-  ]
-}</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Debugging Mindset</h3>
-                            <ul>
-                                <li>Reproduce the issue: Ensure stable reproduction</li>
-                                <li>Isolate the problem: Binary search to narrow scope</li>
-                                <li>Hypothesis testing: Guess cause and test</li>
-                                <li>Check logs: Error messages are often key</li>
-                            </ul>
+                            <h3>Checklist</h3>
+                            <ol>
+                                <li><strong>✅ Commit current code</strong>
+                                    <p>Save progress for easy rollback: <code>git add . && git commit -m "save current state"</code></p>
+                                </li>
+                                <li><strong>✅ Refresh session</strong>
+                                    <p>If conversation is too long, restart to clear context</p>
+                                </li>
+                                <li><strong>✅ Check config files</strong>
+                                    <p>Ensure agents.md, .env, package.json are correct</p>
+                                </li>
+                                <li><strong>✅ Verify environment</strong>
+                                    <p>Run <code>npm install</code> to ensure dependencies installed</p>
+                                </li>
+                            </ol>
                         </div>
                     `
                 }
             },
             {
                 id: 21,
-                category: 'debugging',
-                icon: '📊',
-                title: { zh: '日志与监控', en: 'Logging & Monitoring' },
+                category: 'workflow',
+                icon: '🔄',
+                title: { zh: '代理循环', en: 'Agent Loop' },
                 description: {
-                    zh: '了解应用运行状态和问题',
-                    en: 'Understanding application runtime status and issues'
+                    zh: '计划→执行→观察→迭代',
+                    en: 'Plan → Execute → Observe → Iterate'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>日志级别</h3>
-                            <ul>
-                                <li><strong>DEBUG</strong>：详细调试信息</li>
-                                <li><strong>INFO</strong>：一般信息</li>
-                                <li><strong>WARN</strong>：警告，可能有问题</li>
-                                <li><strong>ERROR</strong>：错误，需要关注</li>
-                                <li><strong>FATAL</strong>：严重错误，系统崩溃</li>
-                            </ul>
+                            <h3>什么是代理循环？</h3>
+                            <p><strong>代理循环（Agent Loop）</strong>是 AI 代理的工作模式，不断重复四个步骤：</p>
                         </div>
                         <div class="content-section">
-                            <h3>结构化日志</h3>
-                            <pre><code class="language-javascript">// 使用 Winston
-const winston = require('winston');
-
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
-  ]
-});
-
-logger.info('User logged in', { userId: 123, ip: '192.168.1.1' });</code></pre>
+                            <h3>循环步骤</h3>
+                            <ol>
+                                <li><strong>🎯 计划（Plan）</strong>
+                                    <p>分析任务，制定执行步骤</p>
+                                </li>
+                                <li><strong>⚡ 执行（Execute）</strong>
+                                    <p>运行命令、修改文件、调用工具</p>
+                                </li>
+                                <li><strong>👀 观察（Observe）</strong>
+                                    <p>检查执行结果、读取输出、分析错误</p>
+                                </li>
+                                <li><strong>🔄 迭代（Iterate）</strong>
+                                    <p>根据结果调整计划，继续循环</p>
+                                </li>
+                            </ol>
                         </div>
                         <div class="content-section">
-                            <h3>监控工具</h3>
-                            <ul>
-                                <li><strong>Sentry</strong>：错误追踪和崩溃报告</li>
-                                <li><strong>Datadog</strong>：全栈监控</li>
-                                <li><strong>New Relic</strong>：性能监控</li>
-                                <li><strong>LogRocket</strong>：前端会话重放</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>关键指标</h3>
-                            <p>响应时间、错误率、CPU/内存使用率、请求量、用户活跃度等。</p>
+                            <h3>示例</h3>
+                            <p>任务：修复登录 bug</p>
+                            <p>① 计划：检查登录函数 → ② 执行：读取 auth.js → ③ 观察：发现密码验证错误 → ④ 迭代：修复代码并测试</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Log Levels</h3>
-                            <ul>
-                                <li><strong>DEBUG</strong>: Detailed debugging info</li>
-                                <li><strong>INFO</strong>: General information</li>
-                                <li><strong>WARN</strong>: Warning, potential issues</li>
-                                <li><strong>ERROR</strong>: Error, needs attention</li>
-                                <li><strong>FATAL</strong>: Critical error, system crash</li>
-                            </ul>
+                            <h3>What Is the Agent Loop?</h3>
+                            <p><strong>The agent loop</strong> is the AI agent's working pattern, continuously repeating four steps:</p>
                         </div>
                         <div class="content-section">
-                            <h3>Structured Logging</h3>
-                            <pre><code class="language-javascript">// Using Winston
-const winston = require('winston');
-
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
-  ]
-});
-
-logger.info('User logged in', { userId: 123, ip: '192.168.1.1' });</code></pre>
+                            <h3>Loop Steps</h3>
+                            <ol>
+                                <li><strong>🎯 Plan</strong>
+                                    <p>Analyze task, formulate execution steps</p>
+                                </li>
+                                <li><strong>⚡ Execute</strong>
+                                    <p>Run commands, modify files, call tools</p>
+                                </li>
+                                <li><strong>👀 Observe</strong>
+                                    <p>Check execution results, read output, analyze errors</p>
+                                </li>
+                                <li><strong>🔄 Iterate</strong>
+                                    <p>Adjust plan based on results, continue loop</p>
+                                </li>
+                            </ol>
                         </div>
                         <div class="content-section">
-                            <h3>Monitoring Tools</h3>
-                            <ul>
-                                <li><strong>Sentry</strong>: Error tracking and crash reporting</li>
-                                <li><strong>Datadog</strong>: Full-stack monitoring</li>
-                                <li><strong>New Relic</strong>: Performance monitoring</li>
-                                <li><strong>LogRocket</strong>: Frontend session replay</li>
-                            </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Key Metrics</h3>
-                            <p>Response time, error rate, CPU/memory usage, request volume, user activity, etc.</p>
+                            <h3>Example</h3>
+                            <p>Task: Fix login bug</p>
+                            <p>① Plan: Check login function → ② Execute: Read auth.js → ③ Observe: Find password validation error → ④ Iterate: Fix code and test</p>
                         </div>
                     `
                 }
             },
             {
                 id: 22,
-                category: 'debugging',
-                icon: '⚡',
-                title: { zh: '性能优化', en: 'Performance Optimization' },
+                category: 'workflow',
+                icon: '🎛️',
+                title: { zh: '自主度模式', en: 'Autonomy Modes' },
                 description: {
-                    zh: '让应用运行得更快更流畅',
-                    en: 'Making applications run faster and smoother'
+                    zh: '控制代理的执行权限',
+                    en: 'Control agent execution permissions'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>前端性能优化</h3>
+                            <h3>什么是自主度模式？</h3>
+                            <p><strong>自主度模式</strong>控制 AI 代理在没有你确认的情况下能做什么。</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>模式类型</h3>
                             <ul>
-                                <li><strong>代码分割</strong>：按需加载，减少初始包大小</li>
-                                <li><strong>图片优化</strong>：压缩、懒加载、使用 WebP</li>
-                                <li><strong>缓存策略</strong>：浏览器缓存、CDN</li>
-                                <li><strong>减少请求</strong>：合并文件、内联关键 CSS</li>
+                                <li><strong>低自主度</strong>：每个操作都需要确认
+                                    <p>适合：生产环境、重要项目</p>
+                                </li>
+                                <li><strong>中自主度</strong>：读取操作自动，修改操作需确认
+                                    <p>适合：日常开发</p>
+                                </li>
+                                <li><strong>高自主度</strong>：大部分操作自动执行
+                                    <p>适合：实验项目、快速原型</p>
+                                </li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>React 性能优化</h3>
-                            <pre><code class="language-javascript">import { memo, useMemo, useCallback } from 'react';
-
-// 避免不必要的重渲染
-const MemoizedComponent = memo(({ data }) => {
-  return <div>{data}</div>;
-});
-
-// 缓存计算结果
-const expensiveValue = useMemo(() => {
-  return computeExpensiveValue(a, b);
-}, [a, b]);
-
-// 缓存函数引用
-const handleClick = useCallback(() => {
-  doSomething(a);
-}, [a]);</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>后端性能优化</h3>
+                            <h3>危险操作</h3>
+                            <p>无论哪种模式，这些操作都应该确认：</p>
                             <ul>
-                                <li><strong>数据库索引</strong>：加速查询</li>
-                                <li><strong>缓存</strong>：Redis 缓存热数据</li>
-                                <li><strong>异步处理</strong>：后台任务队列</li>
-                                <li><strong>连接池</strong>：重用数据库连接</li>
+                                <li>删除文件</li>
+                                <li>推送到远程仓库</li>
+                                <li>修改配置文件</li>
                             </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>性能测试工具</h3>
-                            <p>Lighthouse、WebPageTest、Chrome Performance、React DevTools Profiler</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Frontend Performance Optimization</h3>
+                            <h3>What Are Autonomy Modes?</h3>
+                            <p><strong>Autonomy modes</strong> control what the AI agent can do without your confirmation.</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>Mode Types</h3>
                             <ul>
-                                <li><strong>Code Splitting</strong>: Load on demand, reduce initial bundle</li>
-                                <li><strong>Image Optimization</strong>: Compress, lazy load, use WebP</li>
-                                <li><strong>Caching Strategy</strong>: Browser cache, CDN</li>
-                                <li><strong>Reduce Requests</strong>: Merge files, inline critical CSS</li>
+                                <li><strong>Low Autonomy</strong>: Every operation needs confirmation
+                                    <p>Suitable for: Production, important projects</p>
+                                </li>
+                                <li><strong>Medium Autonomy</strong>: Read operations auto, modify needs confirmation
+                                    <p>Suitable for: Daily development</p>
+                                </li>
+                                <li><strong>High Autonomy</strong>: Most operations execute automatically
+                                    <p>Suitable for: Experimental projects, rapid prototyping</p>
+                                </li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>React Performance Optimization</h3>
-                            <pre><code class="language-javascript">import { memo, useMemo, useCallback } from 'react';
-
-// Avoid unnecessary re-renders
-const MemoizedComponent = memo(({ data }) => {
-  return <div>{data}</div>;
-});
-
-// Cache computed value
-const expensiveValue = useMemo(() => {
-  return computeExpensiveValue(a, b);
-}, [a, b]);
-
-// Cache function reference
-const handleClick = useCallback(() => {
-  doSomething(a);
-}, [a]);</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Backend Performance Optimization</h3>
+                            <h3>Dangerous Operations</h3>
+                            <p>Regardless of mode, these should be confirmed:</p>
                             <ul>
-                                <li><strong>Database Indexes</strong>: Speed up queries</li>
-                                <li><strong>Caching</strong>: Redis cache hot data</li>
-                                <li><strong>Async Processing</strong>: Background task queues</li>
-                                <li><strong>Connection Pools</strong>: Reuse database connections</li>
+                                <li>Deleting files</li>
+                                <li>Pushing to remote repo</li>
+                                <li>Modifying config files</li>
                             </ul>
-                        </div>
-                        <div class="content-section">
-                            <h3>Performance Testing Tools</h3>
-                            <p>Lighthouse, WebPageTest, Chrome Performance, React DevTools Profiler</p>
                         </div>
                     `
                 }
             },
             {
                 id: 23,
-                category: 'debugging',
-                icon: '🔐',
-                title: { zh: '安全基础', en: 'Security Fundamentals' },
+                category: 'workflow',
+                icon: '💡',
+                title: { zh: '最佳实践', en: 'Best Practices' },
                 description: {
-                    zh: '保护应用和用户数据安全',
-                    en: 'Protecting applications and user data'
+                    zh: '边做边学的实践建议',
+                    en: 'Learn-by-doing practice recommendations'
                 },
                 details: {
                     zh: `
                         <div class="content-section">
-                            <h3>常见安全威胁</h3>
+                            <h3>与 AI 代理协作的最佳方式</h3>
+                        </div>
+                        <div class="content-section">
+                            <h3>🎯 给出清晰的上下文</h3>
                             <ul>
-                                <li><strong>SQL 注入</strong>：恶意 SQL 代码注入</li>
-                                <li><strong>XSS</strong>：跨站脚本攻击</li>
-                                <li><strong>CSRF</strong>：跨站请求伪造</li>
-                                <li><strong>暴力破解</strong>：尝试猜测密码</li>
+                                <li>不要说："修改代码"</li>
+                                <li>而是说："修改 src/auth.js 中的登录函数，让它支持邮箱登录"</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>防御措施</h3>
-                            <pre><code class="language-javascript">// 1. 参数化查询防止 SQL 注入
-const query = 'SELECT * FROM users WHERE email = $1';
-db.query(query, [userEmail]);
-
-// 2. 转义输出防止 XSS
-import DOMPurify from 'dompurify';
-const clean = DOMPurify.sanitize(userInput);
-
-// 3. CSRF Token
-<form method="POST">
-  <input type="hidden" name="csrf_token" value="{token}" />
-</form>
-
-// 4. 密码哈希
-const bcrypt = require('bcrypt');
-const hashedPassword = await bcrypt.hash(password, 10);</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>最佳实践</h3>
+                            <h3>📝 记录项目规则</h3>
+                            <p>在 agents.md 中写明：</p>
                             <ul>
-                                <li>使用 HTTPS 加密传输</li>
-                                <li>实施速率限制防止暴力破解</li>
-                                <li>定期更新依赖避免已知漏洞</li>
-                                <li>最小权限原则</li>
-                                <li>输入验证和输出转义</li>
+                                <li>代码风格偏好</li>
+                                <li>文件组织规则</li>
+                                <li>测试要求</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>安全工具</h3>
-                            <p>npm audit（检查依赖漏洞）、OWASP ZAP（安全扫描）、Snyk（持续安全监控）</p>
+                            <h3>🔄 频繁提交代码</h3>
+                            <p>每完成一个小功能就 commit，方便回滚。</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>🧪 先测试再部署</h3>
+                            <p>让代理在本地测试通过后再部署到生产环境。</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>💬 善用对话历史</h3>
+                            <p>但要注意上下文窗口限制，对话太长时及时刷新。</p>
                         </div>
                     `,
                     en: `
                         <div class="content-section">
-                            <h3>Common Security Threats</h3>
+                            <h3>Best Ways to Collaborate with AI Agents</h3>
+                        </div>
+                        <div class="content-section">
+                            <h3>🎯 Provide Clear Context</h3>
                             <ul>
-                                <li><strong>SQL Injection</strong>: Malicious SQL code injection</li>
-                                <li><strong>XSS</strong>: Cross-Site Scripting</li>
-                                <li><strong>CSRF</strong>: Cross-Site Request Forgery</li>
-                                <li><strong>Brute Force</strong>: Password guessing attempts</li>
+                                <li>Don't say: "Modify the code"</li>
+                                <li>Instead say: "Modify the login function in src/auth.js to support email login"</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Defense Measures</h3>
-                            <pre><code class="language-javascript">// 1. Parameterized queries prevent SQL injection
-const query = 'SELECT * FROM users WHERE email = $1';
-db.query(query, [userEmail]);
-
-// 2. Escape output to prevent XSS
-import DOMPurify from 'dompurify';
-const clean = DOMPurify.sanitize(userInput);
-
-// 3. CSRF Token
-<form method="POST">
-  <input type="hidden" name="csrf_token" value="{token}" />
-</form>
-
-// 4. Password hashing
-const bcrypt = require('bcrypt');
-const hashedPassword = await bcrypt.hash(password, 10);</code></pre>
-                        </div>
-                        <div class="content-section">
-                            <h3>Best Practices</h3>
+                            <h3>📝 Document Project Rules</h3>
+                            <p>Write in agents.md:</p>
                             <ul>
-                                <li>Use HTTPS for encrypted transmission</li>
-                                <li>Implement rate limiting to prevent brute force</li>
-                                <li>Regularly update dependencies to avoid known vulnerabilities</li>
-                                <li>Principle of least privilege</li>
-                                <li>Input validation and output escaping</li>
+                                <li>Code style preferences</li>
+                                <li>File organization rules</li>
+                                <li>Testing requirements</li>
                             </ul>
                         </div>
                         <div class="content-section">
-                            <h3>Security Tools</h3>
-                            <p>npm audit (check dependency vulnerabilities), OWASP ZAP (security scanning), Snyk (continuous security monitoring)</p>
+                            <h3>🔄 Commit Frequently</h3>
+                            <p>Commit after each small feature for easy rollback.</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>🧪 Test Before Deploy</h3>
+                            <p>Have the agent test locally before deploying to production.</p>
+                        </div>
+                        <div class="content-section">
+                            <h3>💬 Use Conversation History</h3>
+                            <p>But watch context window limits - refresh when conversation gets too long.</p>
                         </div>
                     `
                 }
             }
         ];
 
-        // Current language
-        let currentLang = localStorage.getItem('lang') || 'zh';
+        // State management
+        let currentLang = 'zh';
+        let currentFilter = 'all';
 
-        // Initialize
-        const modalOverlay = document.getElementById('modalOverlay');
-        const modal = document.getElementById('modal');
-        const modalIcon = document.getElementById('modalIcon');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalTitleEn = document.getElementById('modalTitleEn');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalContent = document.getElementById('modalContent');
-        const modalClose = document.getElementById('modalClose');
-        const cardsContainer = document.getElementById('cardsContainer');
-
-        // Update language
-        function updateLanguage(lang) {
-            currentLang = lang;
-            document.body.setAttribute('lang', lang);
-            localStorage.setItem('lang', lang);
-
-            // Update i18n elements
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18n[lang][key]) {
-                    el.textContent = i18n[lang][key];
-                }
+        // Update UI text based on language
+        function updateLanguage() {
+            const texts = i18n[currentLang];
+            document.querySelector('h1').textContent = texts.title;
+            document.querySelector('.subtitle').textContent = texts.subtitle;
+            document.getElementById('langToggle').textContent = texts.langSwitch;
+            document.querySelector('html').setAttribute('lang', currentLang === 'zh' ? 'zh-CN' : 'en');
+            document.body.setAttribute('lang', currentLang);
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const filter = btn.dataset.filter;
+                const key = filter === 'all' ? 'filterAll' : 
+                           filter === 'basics' ? 'filterBasics' :
+                           filter === 'config' ? 'filterConfig' :
+                           filter === 'dev' ? 'filterDev' :
+                           filter === 'debugging' ? 'filterDebugging' :
+                           'filterWorkflow';
+                btn.textContent = texts[key];
             });
-
-            // Update lang buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-
-            // Re-render cards
-            const activeFilter = document.querySelector('.filter-tab.active').dataset.filter;
-            renderCards(activeFilter);
+            
+            renderCards();
         }
 
-        // Render cards
-        function renderCards(filter = 'all') {
-            cardsContainer.innerHTML = '';
-
-            const filteredCards = filter === 'all'
-                ? cardsData
-                : cardsData.filter(card => card.category === filter);
-
-            filteredCards.forEach(card => {
-                const cardEl = document.createElement('div');
-                cardEl.className = 'card';
-                cardEl.setAttribute('data-category', card.category);
-
-                const displayTitle = currentLang === 'zh' ? card.title.zh : card.title.en;
-                const displayDesc = currentLang === 'zh' ? card.description.zh : card.description.en;
-                const altTitle = currentLang === 'zh' ? card.title.en : card.title.zh;
-
-                cardEl.innerHTML = `
-                    <div class="card-header">
-                        <div class="card-icon">${card.icon}</div>
-                        <div class="card-title-group">
-                            <div class="card-title">${displayTitle}</div>
-                            <div class="card-title-en">${altTitle}</div>
-                        </div>
-                        <div class="card-number">#${String(card.id).padStart(2, '0')}</div>
-                    </div>
-                    <div class="card-description">${displayDesc}</div>
-                    <div class="card-expand-hint">${i18n[currentLang]['click-to-view']}</div>
-                `;
-
-                cardEl.addEventListener('click', () => openModal(card));
-                cardsContainer.appendChild(cardEl);
-            });
-        }
-
-        // Open modal
-        function openModal(card) {
-            const accentColor = getComputedStyle(document.querySelector(`[data-category="${card.category}"]`)).getPropertyValue('--card-accent');
-            modal.style.setProperty('--modal-accent', accentColor);
-
-            const displayTitle = currentLang === 'zh' ? card.title.zh : card.title.en;
-            const displayDesc = currentLang === 'zh' ? card.description.zh : card.description.en;
-            const altTitle = currentLang === 'zh' ? card.title.en : card.title.zh;
-            const displayDetails = currentLang === 'zh' ? card.details.zh : card.details.en;
-
-            modalIcon.textContent = card.icon;
-            modalTitle.textContent = displayTitle;
-            modalTitleEn.textContent = altTitle;
-            modalDescription.textContent = displayDesc;
-            modalContent.innerHTML = displayDetails;
-
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-
-            setTimeout(() => {
-                document.querySelectorAll('.modal-content pre code').forEach((block) => {
-                    hljs.highlightElement(block);
+        // Render cards based on current filter and language
+        function renderCards() {
+            const container = document.getElementById('cardsContainer');
+            const filteredCards = currentFilter === 'all' 
+                ? cardsData 
+                : cardsData.filter(card => card.category === currentFilter);
+            
+            container.innerHTML = filteredCards.map(card => `
+                <div class="card" data-id="${card.id}">
+                    <div class="card-icon">${card.icon}</div>
+                    <h3 class="card-title">${card.title[currentLang]}</h3>
+                    <p class="card-description">${card.description[currentLang]}</p>
+                </div>
+            `).join('');
+            
+            // Add click handlers
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = parseInt(card.dataset.id);
+                    openModal(id);
                 });
-            }, 100);
+            });
+        }
+
+        // Open modal with card details
+        function openModal(id) {
+            const card = cardsData.find(c => c.id === id);
+            if (!card) return;
+            
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            const closeText = i18n[currentLang].close;
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <div class="modal-icon">${card.icon}</div>
+                    <h2>${card.title[currentLang]}</h2>
+                    <button class="modal-close" id="modalClose">${closeText}</button>
+                </div>
+                <div class="modal-body">
+                    ${card.details[currentLang]}
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Highlight code blocks
+            modalContent.querySelectorAll('pre code').forEach(block => {
+                hljs.highlightElement(block);
+            });
+            
+            // Close button handler
+            document.getElementById('modalClose').addEventListener('click', closeModal);
         }
 
         // Close modal
         function closeModal() {
-            modalOverlay.classList.remove('active');
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
+        // Event listeners
+        document.getElementById('langToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateLanguage();
         });
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                closeModal();
-            }
-        });
-
-        // Filter tabs
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tab').forEach(t =>
-                    t.classList.remove('active')
-                );
-                tab.classList.add('active');
-                renderCards(tab.dataset.filter);
-            });
-        });
-
-        // Language toggle
-        document.querySelectorAll('.lang-btn').forEach(btn => {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                updateLanguage(btn.dataset.lang);
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderCards();
             });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
 
         // Initialize
-        updateLanguage(currentLang);
+        updateLanguage();
     </script>
 </body>
 </html>
