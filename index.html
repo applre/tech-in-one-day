@@ -2140,38 +2140,29 @@ debugger  // Set breakpoint</code></pre>
         function openModal(id) {
             const card = cardsData.find(c => c.id === id);
             if (!card) return;
-            
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modalContent');
-            const closeText = i18n[currentLang].close;
-            
-            modalContent.innerHTML = `
-                <div class="modal-header">
-                    <div class="modal-icon">${card.icon}</div>
-                    <h2>${card.title[currentLang]}</h2>
-                    <button class="modal-close" id="modalClose">${closeText}</button>
-                </div>
-                <div class="modal-body">
-                    ${card.details[currentLang]}
-                </div>
-            `;
-            
-            modal.classList.add('active');
+
+            // Update modal content
+            document.getElementById('modalIcon').textContent = card.icon;
+            document.getElementById('modalTitle').textContent = card.title[currentLang];
+            document.getElementById('modalTitleEn').textContent = currentLang === 'zh' ? card.title.en : card.title.zh;
+            document.getElementById('modalDescription').textContent = card.description[currentLang];
+            document.getElementById('modalContent').innerHTML = card.details[currentLang];
+
+            // Show modal
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
+
             // Highlight code blocks
-            modalContent.querySelectorAll('pre code').forEach(block => {
+            document.getElementById('modalContent').querySelectorAll('pre code').forEach(block => {
                 hljs.highlightElement(block);
             });
-            
-            // Close button handler
-            document.getElementById('modalClose').addEventListener('click', closeModal);
         }
 
         // Close modal
         function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('active');
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
@@ -2194,9 +2185,12 @@ debugger  // Set breakpoint</code></pre>
             });
         });
 
-        // Close modal when clicking outside
-        document.getElementById('modal').addEventListener('click', (e) => {
-            if (e.target.id === 'modal') {
+        // Close button handler
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+
+        // Close modal when clicking on overlay (outside modal content)
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'modalOverlay') {
                 closeModal();
             }
         });
